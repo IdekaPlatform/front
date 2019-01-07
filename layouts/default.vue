@@ -48,56 +48,84 @@
       <v-spacer></v-spacer>
       <v-btn
         icon
-        @click.stop="rightDrawer = !rightDrawer"
+        @click="showMusic = !showMusic"
       >
-        <v-icon>menu</v-icon>
+        <v-icon v-html="showMusic ? 'fas fa-volume-up' : 'fas fa-music'"></v-icon>
       </v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
-      <the-footer v-if="$route.name === 'music'"></the-footer>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
+    <div class="text-xs-center">
+      <v-bottom-sheet inset v-model="showMusic">
+        <v-card tile>
+          <v-list>
+            <v-slider
+                    :value="50"
+                    class="my-0"
+                    height="3"
+            ></v-slider>
+            <v-list-tile>
+              <v-img max-height="80px" max-width="80px" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/BMTHMantra.jpg/220px-BMTHMantra.jpg" aspect-ratio="1" style="margin-right: 15px"></v-img>
+              <v-list-tile-content>
+                <v-list-tile-title>Mantra</v-list-tile-title>
+                <v-list-tile-sub-title>Bring Me The Horizon</v-list-tile-sub-title>
+              </v-list-tile-content>
+
+              <v-spacer></v-spacer>
+
+              <v-list-tile-action>
+                <v-btn icon>
+                  <v-icon>fast_rewind</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+
+              <v-list-tile-action :class="{ 'mx-5': $vuetify.breakpoint.mdAndUp }">
+                <v-btn icon>
+                  <v-icon>pause</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+
+              <v-list-tile-action :class="{ 'mr-3': $vuetify.breakpoint.mdAndUp }">
+                <v-btn icon>
+                  <v-icon>fast_forward</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+              <v-spacer></v-spacer>
+              <v-slider
+                      v-model="volume"
+                      prepend-icon="volume_up"
+              ></v-slider>
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-bottom-sheet>
+    </div>
   </v-app>
 </template>
 
 <script>
-  import TheFooter from '@/components/TheFooter'
 export default {
-    data () {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
-          { icon: 'fas fa-play', title: 'Music Player', to: '/music' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
-    },
-    components: {
-      TheFooter
+  data () {
+    return {
+      showMusic: false,
+      clipped: false,
+      drawer: true,
+      timeBar: 0,
+      volume: 50,
+      fixed: false,
+      items: [
+        { icon: 'apps', title: 'Welcome', to: '/' },
+        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+        { icon: 'fas fa-play', title: 'Music Player', to: '/music' }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Ideka'
     }
   }
+}
 </script>
