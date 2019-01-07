@@ -7,5 +7,5 @@ You can also join our [Discord Server](https://discord.gg/S5xNR2) to join the de
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
-##Issue process
+## Issue process
 note to explain how we work

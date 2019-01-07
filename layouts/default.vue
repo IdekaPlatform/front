@@ -24,7 +24,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
+    <v-toolbar app :clipped-left="clipped">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn
         icon
@@ -57,6 +57,7 @@
       <v-container>
         <nuxt />
       </v-container>
+      <the-footer v-if="$route.name === 'music'"></the-footer>
     </v-content>
     <v-navigation-drawer
       temporary
@@ -73,14 +74,12 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
-  export default {
+  import TheFooter from '@/components/TheFooter'
+export default {
     data () {
       return {
         clipped: false,
@@ -88,13 +87,17 @@
         fixed: false,
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'fas fa-play', title: 'Music Player', to: '/music' }
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
         title: 'Vuetify.js'
       }
+    },
+    components: {
+      TheFooter
     }
   }
 </script>
