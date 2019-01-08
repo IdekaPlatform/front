@@ -63,7 +63,7 @@
         <v-card tile>
           <v-list>
             <v-slider
-                    :value="50"
+                    :value="timeBar"
                     class="my-0"
                     height="3"
             ></v-slider>
@@ -113,7 +113,7 @@ export default {
       showMusic: false,
       clipped: false,
       drawer: true,
-      timeBar: 0,
+      timeBar: 50,
       volume: 50,
       fixed: false,
       items: [
