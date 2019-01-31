@@ -60,6 +60,7 @@
       methods: {
         login () {
           if (this.valid) {
+            localStorage.loggedIn = true
             this.$router.push('/home')
           }
         },
