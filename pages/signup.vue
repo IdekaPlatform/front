@@ -51,7 +51,7 @@
                     <v-flex ma-1>
                         <v-text-field
                                 v-model="pseudo"
-                                :rules="[v => !!v || 'Nom obligatoire']"
+                                :rules="pseudoRules"
                                 label="Pseudo"
                                 required
                         ></v-text-field>
@@ -112,7 +112,8 @@
         ],
         confirmPasswordRules: [
           v => !!v || 'Confirmation de mot de passe obligatoire'
-        ]
+        ],
+        pseudoRules: [v => !!v || 'Nom obligatoire']
       }),
       methods: {
         signup () {

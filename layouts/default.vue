@@ -52,6 +52,7 @@
       >
         <v-icon v-html="showMusic ? 'fas fa-volume-up' : 'fas fa-music'"></v-icon>
       </v-btn>
+      <v-btn @click="logout">Logout</v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -108,6 +109,7 @@
 
 <script>
 export default {
+  middleware: 'authenticated',
   data () {
     return {
       showMusic: false,
@@ -117,7 +119,7 @@ export default {
       volume: 50,
       fixed: false,
       items: [
-        { icon: 'apps', title: 'Welcome', to: '/' },
+        { icon: 'apps', title: 'Welcome', to: '/home' },
         { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
         { icon: 'fas fa-play', title: 'Music Player', to: '/music' }
       ],
@@ -125,6 +127,13 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Ideka'
+    }
+  },
+  methods: {
+    logout () {
+      localStorage.clear()
+      console.log('toutou')
+      this.$router.push('/')
     }
   }
 }
