@@ -86,6 +86,8 @@
             console.log(e)
           })
         }
+      },
+      created: function () {
       }
     }
 </script>
