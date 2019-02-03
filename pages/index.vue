@@ -26,14 +26,22 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn color="secondary" to="/signup">Inscription</v-btn>
-                                <v-spacer></v-spacer>
-                                <v-btn color="primary" type="submit" :disabled="!valid" @click="login">Login</v-btn>
+                                <v-layout row>
+                                    <v-flex row ma-2>
+                                        <v-btn @click="twitterLogIn" class="loginButton twitter">Login<v-icon right color="#1da1f2">fab fa-twitter</v-icon></v-btn>
+                                        <v-btn @click="googleLogIn" class="loginButton google"><v-icon left color="#0057e7">fab fa-google</v-icon>Login</v-btn>
+                                    </v-flex>
+                                    <v-flex row ma-2 class="text-sm-right">
+                                        <v-btn color="secondary" to="/signup">Inscription</v-btn>
+                                        <v-btn color="primary" type="submit" :disabled="!valid" @click="login">Login</v-btn>
+                                    </v-flex>
+                                </v-layout>
                             </v-card-actions>
                         </v-card>
 </template>
 
 <script>
+    import firebase from 'firebase'
     export default {
       layout: 'login',
       data: () => ({
@@ -58,9 +66,49 @@
             localStorage.loggedIn = true
             this.$router.push('/home')
           }
+        },
+        googleLogIn () {
+          this.googleProvider = new firebase.auth.GoogleAuthProvider()
+          firebase.auth().signInWithPopup(this.googleProvider).then(result => {
+            console.log(result)
+            this.$router.push('/home')
+          }).catch(e => {
+            this.$snotify.error(e.message)
+            console.log(e)
+          })
+        },
+        twitterLogIn () {
+          this.twtterProvider = new firebase.auth.TwitterAuthProvider()
+          firebase.auth().signInWithPopup(this.twtterProvider).then(result => {
+            console.log(result)
+            this.$router.push('/home')
+          }).catch(e => {
+            console.log(e)
+          })
         }
       },
       created: function () {
       }
     }
 </script>
+
+<style scoped>
+
+    .loginButton {
+        background-color: transparent !important;
+        border: 1px solid currentColor;
+        box-shadow: none;
+    }
+
+    .google {
+        color: #0057e7 !important;
+    }
+
+    .twitter {
+        color: #1da1f2 !important;
+    }
+
+    .v-btn {
+        margin-bottom: 5px !important;
+    }
+</style>
