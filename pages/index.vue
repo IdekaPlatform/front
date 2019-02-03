@@ -59,6 +59,8 @@
             this.$router.push('/home')
           }
         }
+      },
+      created: function () {
       }
     }
 </script>

@@ -120,7 +120,7 @@ export default {
       fixed: false,
       items: [
         { icon: 'apps', title: 'Welcome', to: '/home' },
-        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+        { icon: 'bubble_chart', title: 'Organisation', to: '/organization' },
         { icon: 'fas fa-play', title: 'Music Player', to: '/music' }
       ],
       miniVariant: false,
