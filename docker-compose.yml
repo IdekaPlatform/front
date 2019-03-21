@@ -1,0 +1,30 @@
+---
+version: '3.5'
+networks:
+    front:
+        name: ideka_front
+        driver: bridge
+
+services:
+    front:
+        container_name: ideka_front
+        build: docker/front
+        env_file: ideka.env
+        networks:
+            - front
+        volumes:
+            - ".:/srv/app"
+
+    nginx:
+        container_name: ideka_nginx
+        build: docker/nginx
+        env_file: ideka.env
+        networks:
+            - front
+        volumes:
+            # nginx
+            - "./volumes/ssl:/etc/ssl"
+            - "./volumes/logs/nginx:/var/log/nginx"
+        ports:
+            - "443:443"
+            - "80:80"
