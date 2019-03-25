@@ -13,3 +13,5 @@ dist
 #Ide files
 .idea
 package-lock.json
+
+volumes
