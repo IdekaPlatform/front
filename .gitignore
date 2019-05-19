@@ -15,3 +15,5 @@ dist
 package-lock.json
 
 volumes
+
+config.json

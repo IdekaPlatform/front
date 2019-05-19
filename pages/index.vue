@@ -16,7 +16,6 @@
                                                   prepend-icon="lock"
                                                   name="password"
                                                   label="Mot de passe"
-                                                  type="password"
                                                   v-model="password"
                                                   :append-icon="viewPassword ? 'fa-eye' : 'fa-eye-slash'"
                                                   @click:append="() => (viewPassword = !viewPassword)"
@@ -41,7 +40,6 @@
 </template>
 
 <script>
-    import firebase from 'firebase'
     export default {
       layout: 'login',
       data: () => ({
@@ -66,25 +64,6 @@
             localStorage.loggedIn = true
             this.$router.push('/home')
           }
-        },
-        googleLogIn () {
-          this.googleProvider = new firebase.auth.GoogleAuthProvider()
-          firebase.auth().signInWithPopup(this.googleProvider).then(result => {
-            console.log(result)
-            this.$router.push('/home')
-          }).catch(e => {
-            this.$snotify.error(e.message)
-            console.log(e)
-          })
-        },
-        twitterLogIn () {
-          this.twtterProvider = new firebase.auth.TwitterAuthProvider()
-          firebase.auth().signInWithPopup(this.twtterProvider).then(result => {
-            console.log(result)
-            this.$router.push('/home')
-          }).catch(e => {
-            console.log(e)
-          })
         }
       },
       created: function () {
