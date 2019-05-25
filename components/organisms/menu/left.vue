@@ -1,8 +1,8 @@
 <template>
     <v-navigation-drawer
+    permanent
       :mini-variant.sync="miniVariant"
       :clipped="clipped"
-      v-model="drawer"
       fixed
       app
     >
@@ -10,7 +10,8 @@
       <v-list>
         <v-list-tile>
           <v-list-tile-title class="title">
-            Ideka
+            <span v-if="!miniVariant">Ideka</span>
+            <span v-else>I</span>
           </v-list-tile-title>
         </v-list-tile>
       </v-list>
@@ -40,6 +41,8 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'left-menu',
+
+    props: ['clipped', 'drawer', 'fixed', 'miniVariant'],
 
     components: {
       OrganizationsList

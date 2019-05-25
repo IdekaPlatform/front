@@ -1,7 +1,14 @@
 <template>
   <v-app>
-    <left-menu />
-    <top-toolbar />
+    <left-menu :clipped="clipped" :drawer="drawer" :miniVariant="miniVariant" :fixed="fixed" />
+    <top-toolbar :clipped="clipped"
+          :title="title"
+          :miniVariant="miniVariant"
+          @switchDrawer="drawer = !drawer"
+          @switchMiniVariant="miniVariant = !miniVariant"
+          @switchClipped="clipped = !clipped"
+          @switchFixed="fixed = !fixed"
+          />
     <v-content>
       <v-container fluid>
         <nuxt />
@@ -16,11 +23,26 @@ import TopToolbar from '~/components/organisms/menu/top-toolbar';
 
 export default {
   middleware: 'authenticated',
+
+
+    data () {
+        return {
+            clipped: false,
+            drawer: true,
+            timeBar: 50,
+            fixed: false,
+            miniVariant: false,
+            right: true,
+            rightDrawer: false,
+            title: 'Ideka'
+        }
+    },
+
   components: {
     LeftMenu,
     TopToolbar,
   },
-  
+
   methods: {
     logout () {
       localStorage.clear()
