@@ -20,6 +20,7 @@ module.exports = {
   plugins: [
     '~/plugins/api.js',
     '~/plugins/i18n.js',
+    '~/plugins/icons.js',
     '~/plugins/vuetify.js'
   ],
   css: ['~/assets/style/app.styl'],
@@ -34,14 +35,14 @@ module.exports = {
     extractCSS: true,
     extend (config, ctx) {
       // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+      // if (ctx.isDev && ctx.isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
+      // }
     }
   }
 }
