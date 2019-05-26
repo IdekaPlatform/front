@@ -17,21 +17,17 @@
       </v-list>
 
       <v-list>
-        <v-list-tile
-            to="/home"
-          router
-          exact
-        >
+        <v-list-tile to="/" router exact>
           <v-list-tile-action>
-            <v-icon>apps</v-icon>
+            <v-icon>home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Welcome</v-list-tile-title>
+            <v-list-tile-title>Accueil</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
 
-      <organizations-list v-if="user" />
+      <organizations-list v-if="user" :organizations="organizations" />
     </v-navigation-drawer>
 </template>
 
@@ -44,8 +40,20 @@ export default {
 
     props: ['clipped', 'drawer', 'fixed', 'miniVariant'],
 
+    data() {
+      return {
+        organizations: []
+      }
+    },
+
     components: {
       OrganizationsList
+    },
+
+    async mounted() {
+      if (this.user !== null) {
+        this.organizations = await this.$repositories.organization.getUserOrganizations(this.user);
+      }
     },
 
     computed: {

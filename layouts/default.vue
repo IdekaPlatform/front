@@ -22,9 +22,6 @@ import LeftMenu from '~/components/organisms/menu/left';
 import TopToolbar from '~/components/organisms/menu/top-toolbar';
 
 export default {
-  middleware: 'authenticated',
-
-
     data () {
         return {
             clipped: false,
@@ -38,16 +35,9 @@ export default {
         }
     },
 
-  components: {
-    LeftMenu,
-    TopToolbar,
-  },
-
-  methods: {
-    logout () {
-      localStorage.clear()
-      this.$router.push('/')
+    components: {
+        LeftMenu,
+        TopToolbar,
     }
-  }
 }
 </script>

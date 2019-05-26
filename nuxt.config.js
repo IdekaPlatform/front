@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -17,12 +17,18 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css' }
     ]
   },
+
+  router: {
+    middleware: ['auth']
+  },
+
   plugins: [
     '~/plugins/api.js',
     '~/plugins/i18n.js',
     '~/plugins/icons.js',
     '~/plugins/vuetify.js'
   ],
+
   css: ['~/assets/style/app.styl'],
   /*
   ** Customize the progress bar color

@@ -1,11 +1,9 @@
-import ProjectRepository from "~/api/project";
-import Repository from "~/api/repository";
+import ProjectRepository from '~/api/project'
+import Repository from '~/api/repository'
 
 const store = {
-  state: {
-    api: {
-      headers: {}
-    }
+  getters: {
+    url: () => '/'
   }
 }
 

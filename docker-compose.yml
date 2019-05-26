@@ -4,14 +4,20 @@ networks:
     front:
         name: ideka_front
         driver: bridge
+    api:
+        name: ideka_api
+        external: true
 
 services:
     front:
         container_name: ideka_front
         build: docker/front
         env_file: ideka.env
+        external_links:
+            - 'ideka_api_nginx:local.api.ideka.fr'
         networks:
             - front
+            - api
         volumes:
             - ".:/srv/app"
 

@@ -11,6 +11,10 @@ export const state = () => ({
 export const mutations = {
   logout: state => {
 
+  },
+
+  addHeader: (state, payload) => {
+    state.headers[payload.name] = payload.value;
   }
 }
 

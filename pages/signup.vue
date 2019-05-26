@@ -1,8 +1,6 @@
 <template>
     <v-card class="elevation-12">
-        <v-form
-                ref="form"
-                v-model="valid">
+        <v-form ref="form" v-model="valid">
             <v-toolbar dark color="secondary">
                 <v-toolbar-title>Inscription</v-toolbar-title>
             </v-toolbar>
@@ -10,21 +8,10 @@
                 <v-layout wrap justify-center>
                     <v-flex ma-1>
                         <v-text-field
-                                v-model="lastName"
-                                :rules="[v => !!v || 'Prénom obligatoire']"
-                                label="Prénom"
+                                v-model="pseudo"
+                                :rules="pseudoRules"
+                                label="Pseudo"
                                 required
-                        ></v-text-field>
-                        <v-text-field
-                                v-model="firstName"
-                                :rules="[v => !!v || 'Prénom obligatoire']"
-                                label="Nom"
-                                required
-                        ></v-text-field>
-                        <v-text-field
-                                v-model="organisation"
-                                label="Entreprise"
-                                append-icon="fas fa-building"
                         ></v-text-field>
                         <v-text-field
                                 v-model="email"
@@ -33,28 +20,8 @@
                                 append-icon="fas fa-envelope"
                                 required
                         ></v-text-field>
-                        <v-text-field
-                                v-model="phoneNumber"
-                                label="Numero de téléphone"
-                                mask="##-##-##-##-##"
-                                append-icon="fas fa-mobile"
-                                required
-                        ></v-text-field>
-                        <v-text-field
-                                v-model.number="age"
-                                label="Age"
-                                :rules="[v => !!v || 'Age obligatoire']"
-                                mask="##"
-                                required
-                        ></v-text-field>
                     </v-flex>
                     <v-flex ma-1>
-                        <v-text-field
-                                v-model="pseudo"
-                                :rules="pseudoRules"
-                                label="Pseudo"
-                                required
-                        ></v-text-field>
                         <v-text-field
                                 v-model="password"
                                 :rules="[v => !!v || 'Mot de passe obligatoire']"
@@ -96,15 +63,10 @@
         email: '',
         checkbox: false,
         items: [],
-        firstName: '',
-        lastName: '',
         pseudo: '',
         error: false,
         password: '',
         confirmPassword: '',
-        organisation: '',
-        phoneNumber: '',
-        age: '',
         valid: false,
         emailRules: [
           v => !!v || 'E-mail obligatoire',
@@ -116,9 +78,13 @@
         pseudoRules: [v => !!v || 'Nom obligatoire']
       }),
       methods: {
-        signup () {
-          // register acount in db
-          this.$router.push('/')
+        async signup () {
+            const tokens = await this.$repositories.user.create(this.pseudo, this.email, this.password);
+
+            await this.$store.dispatch('user/storeToken', tokens);
+            this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
+            
+            this.$router.push('/')
         }
       },
       watch: {
@@ -128,7 +94,3 @@
       }
     }
 </script>
-
-<style scoped>
-
-</style>

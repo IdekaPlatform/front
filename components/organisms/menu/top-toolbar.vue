@@ -12,7 +12,11 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="user" @click="logout">Logout</v-btn>
+
+      <template v-if="user">
+          <v-btn flat>{{ user.username }}</v-btn>
+          <v-btn @click="logout">Déconnexion</v-btn>
+      </template>
       <template v-else>
           <v-btn to="/signin" color="primary">Connexion</v-btn>
           <v-btn to="/signup">Inscription</v-btn>
@@ -32,6 +36,13 @@ export default {
         ...mapGetters({
             user: 'user/user'
         })
+    },
+
+    methods: {
+      async logout () {
+        await this.$store.dispatch('user/logout');
+        this.$router.push('/')
+      }
     }
 }
 </script>

@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 
 export const state = () => ({
   token: null,
+  refreshToken: null,
   user: null,
   locales: ['en', 'fr'],
   locale: 'fr',
@@ -22,6 +23,10 @@ export const mutations = {
     state.token = token
   },
 
+  setRefreshToken (state, token) {
+    state.refreshToken = token
+  },
+
   setUser (state, user) {
     state.user = user
   },
@@ -38,21 +43,27 @@ export const mutations = {
 }
 
 export const actions = {
-  async storeToken ({ commit }, token) {
+  async storeToken ({ commit }, payload) {
     if (process.client) {
-      Cookies.set('security_token', token)
+      Cookies.set('security_token', payload.token)
+      Cookies.set('security_refresh_token', payload)
     }
-    commit('setToken', token)
-    commit('api/addHeader', { name: 'Authorization', value: `Bearer ${token}` }, { root: true })
+    commit('setToken', payload.token)
+    commit('setRefreshToken', payload.refresh_token)
+    commit('api/addHeader', { name: 'Authorization', value: `Bearer ${payload.token}` }, { root: true })
   },
 
   async logout ({ commit }) {
     Cookies.remove('security_token')
+    Cookies.remove('security_refresh_token')
     commit('setToken', null)
+    commit('setRefreshToken', null)
     commit('setUser', null)
   }
 }
 
 export const getters = {
-  screen: state => state.screen
+  screen: state => state.screen,
+
+  user: state => state.user
 }

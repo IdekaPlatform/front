@@ -1,18 +1,29 @@
 <template>
-    <v-layout column justify-center align-center>
+  <v-layout justify-space-between>
+    <v-flex column md4>
       <header>
-      <h1>
-        <img :src="project.logo" :alt="project.name" />
-        {{ project.name }}
-      </h1>
+        <h1>
+          {{ project.name }}
+        </h1>
+        <v-flex>
+          <social-badge v-for="network in project.social_networks" :key="network.network" :network="network" size="2x" />
+        </v-flex>
       </header>
+      <organization-card v-if="project.organization" :organization="project.organization" />
+    </v-flex>
+    <v-flex md8 offset-md1>
       <section>
         {{ project.description }}
+
       </section>
-    </v-layout>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
+import OrganizationCard from '~/components/molecules/organization/card'
+import SocialBadge from '~/components/atoms/social/badge'
+
 export default {
   name: 'page-project-details',
 
@@ -20,6 +31,11 @@ export default {
     return {
       project: await app.$repositories.project.get(route.params.slug)
     }
+  },
+
+  components: {
+    OrganizationCard,
+    SocialBadge
   }
 }
 </script>

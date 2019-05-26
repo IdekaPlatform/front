@@ -1,4 +1,7 @@
 {
+    "organization": {
+        "see": "Voir"
+    },
     "project": {
         "created_at": "Créé le {created_at}"
     }

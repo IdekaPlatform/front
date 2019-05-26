@@ -15,7 +15,6 @@
 <script>
     export default {
       name: 'login',
-      middleware: 'login'
     }
 </script>
 
