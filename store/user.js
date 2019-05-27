@@ -43,6 +43,10 @@ export const mutations = {
     state.user.projects = projects
   },
 
+  addProject (state, project) {
+    state.user.projects.push(project);
+  },
+
   setLocale (state, locale) {
     if (state.locales.indexOf(locale) !== -1) {
       state.locale = locale

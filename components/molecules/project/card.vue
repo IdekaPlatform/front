@@ -4,7 +4,10 @@
         <v-card-text>
           <p v-html="project.short_description"></p>
           <div class="text-xs-right">
-            <em><small>{{ project.organization.name }}</small></em>
+            <em>
+              <small v-if="project.organization">{{ project.organization.name }}</small>
+              <small v-else>{{ project.user.username }}</small>
+            </em>
           </div>
           <hr class="my-3">
           <span>{{ createdAt }}</span>
