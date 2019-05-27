@@ -39,6 +39,10 @@ export const mutations = {
     state.user.organizations = organizations
   },
 
+  addOrganization (state, organization) {
+    state.user.organizations.push(organization)
+  },
+
   setProjects (state, projects) {
     state.user.projects = projects
   },

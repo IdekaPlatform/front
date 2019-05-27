@@ -12,6 +12,10 @@ export default {
         return {
             organization: await app.$repositories.organization.get(params.slug)
         };
-    }
+    },
+
+    beforeMount() {
+        this.$store.commit('setPageTitle', this.organization.name)
+    },
 }
 </script>

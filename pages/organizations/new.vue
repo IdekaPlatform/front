@@ -32,7 +32,7 @@
                 <img :src="imgDataUrl">
                 Logo <v-btn @click="toggleShow" icon><v-icon>fas fa-user-circle</v-icon></v-btn>
             </v-flex> -->
-            
+
             <v-text-field v-model="websiteUrl" label="Site web" />
 
             <v-btn :disabled="!valid" color="success" @click="validate">
@@ -59,6 +59,10 @@
         nameRules: [
           v => !!v || 'Nom obligatoire'],
       }),
+
+      beforeMount() {
+        this.$store.commit('setPageTitle', 'Ideka')
+      },
 
       methods: {
         async validate () {

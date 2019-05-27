@@ -17,7 +17,7 @@
                     v-model="organization"
                     :items="user.organizations"
                     item-text="name"
-                    item-value="id"
+                    item-value="slug"
                     label="Organisation"
                     required />
             <i>En laissant le champ organisation vide, vous devenez à titre personnel le gestionnaire de ce projet</i>
@@ -83,6 +83,10 @@ export default {
       select: null,
       checkbox: false
     }),
+
+    beforeMount() {
+      this.$store.commit('setPageTitle', 'Ideka')
+    },
 
     computed: {
       ...mapGetters({

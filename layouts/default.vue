@@ -2,7 +2,6 @@
   <v-app>
     <left-menu :clipped="clipped" :drawer="drawer" :miniVariant="miniVariant" :fixed="fixed" />
     <top-toolbar :clipped="clipped"
-          :title="title"
           :miniVariant="miniVariant"
           @switchDrawer="drawer = !drawer"
           @switchMiniVariant="miniVariant = !miniVariant"
@@ -30,8 +29,7 @@ export default {
             fixed: false,
             miniVariant: false,
             right: true,
-            rightDrawer: false,
-            title: 'Ideka'
+            rightDrawer: false
         }
     },
 

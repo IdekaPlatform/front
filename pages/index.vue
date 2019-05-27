@@ -1,11 +1,11 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
       <div class="text-xs-center">
         <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       </div>
-      <project-card v-for="project in projects" :key="project.slug" :project="project" />
-    </v-flex>
+      <v-layout>
+          <project-card v-for="project in projects" :key="project.slug" :project="project" class="ma-3" />
+      </v-layout>
   </v-layout>
 </template>
 
@@ -19,6 +19,10 @@ export default {
     return {
       projects: await app.$repositories.project.getAll()
     }
+  },
+
+  beforeMount() {
+    this.$store.commit('setPageTitle', 'Ideka')
   },
 
   components: {

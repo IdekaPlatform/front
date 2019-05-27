@@ -30,11 +30,12 @@ import { mapGetters } from 'vuex';
 export default {
     name: 'top-toolbar',
 
-    props: ['title', 'clipped', 'miniVariant'],
+    props: ['clipped', 'miniVariant'],
 
     computed: {
         ...mapGetters({
-            user: 'user/user'
+            user: 'user/user',
+            title: 'pageTitle'
         })
     },
 
