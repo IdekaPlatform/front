@@ -17,3 +17,5 @@ package-lock.json
 volumes
 
 config.json
+
+ideka.env
