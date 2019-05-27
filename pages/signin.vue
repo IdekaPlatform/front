@@ -53,6 +53,12 @@
             await this.$store.dispatch('user/storeToken', data);
 
             this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
+            const [ organizations, projects ] = await Promise.all([
+                this.$repositories.organization.getUserOrganizations(this.$store.getters['user/user']),
+                this.$repositories.project.getUserProjects(this.$store.getters['user/user'])
+            ]);
+            this.$store.commit('user/setOrganizations', organizations)
+            this.$store.commit('user/setProjects', projects)
             this.$router.push('/');
         }
       },

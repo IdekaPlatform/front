@@ -27,12 +27,16 @@
         </v-list-tile>
       </v-list>
 
-      <organizations-list v-if="user" :organizations="organizations" />
+      <template v-if="user">
+        <organizations-list  :organizations="user.organizations" />
+        <projects-list :projects="user.projects" />
+      </template>
     </v-navigation-drawer>
 </template>
 
 <script>
 import OrganizationsList from '~/components/organisms/organization/list';
+import ProjectsList from '~/components/organisms/project/list';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -40,20 +44,9 @@ export default {
 
     props: ['clipped', 'drawer', 'fixed', 'miniVariant'],
 
-    data() {
-      return {
-        organizations: []
-      }
-    },
-
     components: {
-      OrganizationsList
-    },
-
-    async mounted() {
-      if (this.user !== null) {
-        this.organizations = await this.$repositories.organization.getUserOrganizations(this.user);
-      }
+      OrganizationsList,
+      ProjectsList
     },
 
     computed: {

@@ -8,4 +8,8 @@ export default class ProjectRepository extends Repository {
   getAll () {
     return this.call('GET', 'api/projects')
   }
+
+  getUserProjects(user) {
+    return this.call('GET', `api/users/${user.id}/projects`)
+  }
 }

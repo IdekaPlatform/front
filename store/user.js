@@ -28,7 +28,19 @@ export const mutations = {
   },
 
   setUser (state, user) {
+    if (user !== null) {
+      user.organizations = []
+      user.projects = []
+    }
     state.user = user
+  },
+
+  setOrganizations (state, organizations) {
+    state.user.organizations = organizations
+  },
+
+  setProjects (state, projects) {
+    state.user.projects = projects
   },
 
   setLocale (state, locale) {
@@ -46,7 +58,7 @@ export const actions = {
   async storeToken ({ commit }, payload) {
     if (process.client) {
       Cookies.set('security_token', payload.token)
-      Cookies.set('security_refresh_token', payload)
+      Cookies.set('security_refresh_token', payload.refresh_token)
     }
     commit('setToken', payload.token)
     commit('setRefreshToken', payload.refresh_token)
