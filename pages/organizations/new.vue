@@ -12,29 +12,11 @@
                     required
             ></v-text-field>
 
-            <v-select
-                    v-model="select"
-                    :items="status"
-                    :rules="[v => !!v || 'Status obligatoire']"
-                    label="Status"
-                    required
-            ></v-select>
+            <v-textarea v-model="shortDescription" label="Introduction" required />
 
-            <v-text-field
-                    v-model.number="number"
-                    label="Nombre de collaborateurs"
-                    required
-                    type="number"
-            ></v-text-field>
+            <v-textarea v-model="description" label="Description" required />
 
-            <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
-                    label="E-mail"
-                    required
-            ></v-text-field>
-            <v-flex>
-
+            <!-- <v-flex>
             <my-upload field="img"
                        @crop-success="cropSuccess"
                        @crop-upload-success="cropUploadSuccess"
@@ -49,13 +31,11 @@
                 img-format="png"></my-upload>
                 <img :src="imgDataUrl">
                 Logo <v-btn @click="toggleShow" icon><v-icon>fas fa-user-circle</v-icon></v-btn>
-            </v-flex>
+            </v-flex> -->
+            
+            <v-text-field v-model="websiteUrl" label="Site web" />
 
-            <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    @click="validate"
-            >
+            <v-btn :disabled="!valid" color="success" @click="validate">
                 Créer
             </v-btn>
 
@@ -65,36 +45,31 @@
 
 <script>
     import myUpload from 'vue-image-crop-upload'
+
     export default {
-      name: 'organization',
+      name: 'new-organization-page',
       data: () => ({
         valid: false,
         name: '',
-        number: '',
+        shortDescription: '',
+        description: '',
+        websiteUrl: '',
         show: false,
         imgDataUrl: null,
         nameRules: [
           v => !!v || 'Nom obligatoire'],
-        email: '',
-        emailRules: [
-          v => !!v || 'E-mail obligatoire',
-          v => /.+@.+/.test(v) || 'E-mail doit être valide'
-        ],
-        select: null,
-        status: [
-          'Status 1',
-          'Status 2',
-          'Status 3',
-          'Status 4'
-        ],
-        checkbox: false
       }),
 
       methods: {
-        validate () {
-          if (this.$refs.form.validate()) {
-            alert('form valid')
+        async validate () {
+          if (!this.valid) {
+            return
           }
+          const organization = await this.$repositories.organization.create(this.name, this.shortDescription, this.description, this.websiteUrl);
+
+          this.$store.commit('user/addOrganization', organization);
+
+          this.$router.push(`/organizations/${organization.slug}`);
         },
         toggleShow () {
           this.show = !this.show
