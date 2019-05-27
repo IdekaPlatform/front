@@ -15,6 +15,7 @@ services:
         env_file: ideka.env
         external_links:
             - 'ideka_api_nginx:local.api.ideka.fr'
+            - 'ideka_api_nginx:ideka-api.new-talents.fr'
         networks:
             - front
             - api
