@@ -29,7 +29,7 @@ services:
             - front
         volumes:
             # nginx
-            - "./volumes/ssl:/etc/ssl"
+            - "./volumes/ssl:/etc/letsencrypt"
             - "./volumes/logs/nginx:/var/log/nginx"
         ports:
             - "443:443"
