@@ -1,3 +1,5 @@
+import path from 'path';
+
 module.exports = {
   mode: 'universal',
   /*
@@ -24,6 +26,7 @@ module.exports = {
 
   plugins: [
     '~/plugins/api.js',
+    { src: '~/plugins/ckeditor.js', ssr: false },
     '~/plugins/i18n.js',
     '~/plugins/icons.js',
     '~/plugins/vuetify.js'
@@ -49,6 +52,8 @@ module.exports = {
       //     exclude: /(node_modules)/
       //   })
       // }
+
+      config.resolve.modules.push(path.resolve(__dirname, 'assets'));
     }
   }
 }

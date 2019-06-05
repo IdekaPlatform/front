@@ -25,4 +25,20 @@ export default class ProjectRepository extends Repository {
     }
     return this.call('POST', 'api/projects', body)
   }
+
+  createNews(project, title, content) {
+    return this.call('POST', `api/projects/${project.slug}/news`, { title, content });
+  }
+
+  getNews(project) {
+    return this.call('GET', `api/projects/${project.slug}/news`);
+  }
+
+  publishNews(news) {
+    return this.call('PATCH', `api/projects/${news.project.slug}/news/${news.id}/publish`);
+  }
+
+  unpublishNews(news) {
+    return this.call('PATCH', `api/projects/${news.project.slug}/news/${news.id}/unpublish`);
+  }
 }

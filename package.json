@@ -18,6 +18,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.1.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.0-beta.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-brands-svg-icons": "^5.8.2",
     "@fortawesome/free-regular-svg-icons": "^5.8.2",
@@ -29,6 +31,8 @@
     "babel-preset-env": "^1.7.0",
     "jest-fetch-mock": "^2.1.2",
     "js-cookie": "^2.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "node-fetch": "^2.5.0",
     "nuxt": "^2.7.1",
     "vue-i18n": "^8.11.2",
