@@ -47,6 +47,7 @@
         </v-card-title>
         <v-card-text v-html="n.content"></v-card-text>
         <v-card-actions v-if="isProjectMember">
+          <v-btn color="teal" flat :to="`/projects/${project.slug}/news/${n.id}-${n.slug}/edit`">Modifier</v-btn>
           <v-btn v-if="!n.is_published" color="teal" flat @click="publish(n)">Publier</v-btn>
           <v-btn v-else color="teal" flat @click="unpublish(n)">Dépublier</v-btn>
         </v-card-actions>
@@ -67,7 +68,7 @@ export default {
   async asyncData ({ app, route }) {
     const [ project, news ] = await Promise.all([
       app.$repositories.project.get(route.params.slug),
-      app.$repositories.project.getNews({ slug: route.params.slug })
+      app.$repositories.project.getProjectNews({ slug: route.params.slug })
     ]);
     return { project, news }
   },
