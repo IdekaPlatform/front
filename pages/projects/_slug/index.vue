@@ -46,6 +46,10 @@
           <h3 class="headline mb-0">{{ n.title }}</h3>
         </v-card-title>
         <v-card-text v-html="n.content"></v-card-text>
+        <v-card-text>
+
+            <span class="grey--text right">par {{ n.author.username }} le {{ n.updated_at }}</span>
+        </v-card-text>
         <v-card-actions v-if="isProjectMember">
           <v-btn color="teal" flat :to="`/projects/${project.slug}/news/${n.id}-${n.slug}/edit`">Modifier</v-btn>
           <v-btn v-if="!n.is_published" color="teal" flat @click="publish(n)">Publier</v-btn>
