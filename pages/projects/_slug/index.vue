@@ -37,8 +37,8 @@
       </section>
     </v-flex>
     <v-flex md8 class="mt-2 ml-4 mr-4">
-      <h2 class="mb-3">Actualités</h2>
-      <v-card v-for="n in news" :key="n.id" :color="(!n.is_published) ? 'teal lighten-5' : null">
+      <h2>Actualités</h2>
+      <v-card v-for="n in news" :key="n.id" :color="(!n.is_published) ? 'teal lighten-5' : null" class="mt-3">
         <v-alert v-if="!n.is_published" :value="true" icon="info" color="teal" outline>
           Cette nouvelle n'est pas publiée et n'est visible que par votre équipe
         </v-alert>
@@ -47,7 +47,6 @@
         </v-card-title>
         <v-card-text v-html="n.content"></v-card-text>
         <v-card-text>
-
             <span class="grey--text right">par {{ n.author.username }} le {{ n.updated_at }}</span>
         </v-card-text>
         <v-card-actions v-if="isProjectMember">
