@@ -5,23 +5,26 @@
                 <v-toolbar-title>Connexion</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
-                <v-layout wrap justify-center>
-                    <v-flex ma-1>
-                        <v-text-field
-                            v-model="pseudo"
-                            label="Pseudo"
-                            required></v-text-field>
-                    </v-flex>
-                    <v-flex ma-1>
-                        <v-text-field
+                <v-form v-model="valid" @submit="signin">
+                    <v-layout wrap justify-center>
+                        <v-flex ma-1>
+                            <v-text-field
+                                v-model="pseudo"
+                                label="Pseudo"
+                                required></v-text-field>
+                        </v-flex>
+                        <v-flex ma-1>
+                            <v-text-field
                                 v-model="password"
                                 :rules="[v => !!v || 'Mot de passe obligatoire']"
                                 label="Mot de passe"
                                 type="password"
+                                @keyup.enter="signin"
                                 required
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
+                            ></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </v-form>
             </v-card-text>
             <v-card-actions>
                 <v-btn to="/">Retour</v-btn>
