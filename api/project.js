@@ -26,6 +26,18 @@ export default class ProjectRepository extends Repository {
     return this.call('POST', 'api/projects', body)
   }
 
+  createJobOffer(project, title, content) {
+    return this.call('POST', `api/projects/${project.slug}/job-offers`, { title, content });
+  }
+
+  getProjectJobOffers(project) {
+    return this.call('GET', `api/projects/${project.slug}/job-offers`);
+  }
+
+  updateJobOfferSkillLevel(jobOffer, skill) {
+    return this.call('PATCH', `api/projects/${jobOffer.project.slug}/job-offers/${jobOffer.id}/skills/${skill.skill.id}`, { level: skill.level });
+  }
+
   createNews(project, title, content) {
     return this.call('POST', `api/projects/${project.slug}/news`, { title, content });
   }

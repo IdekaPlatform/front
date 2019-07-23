@@ -22,7 +22,7 @@
               </v-btn>
             </v-list-tile>
             <v-list-tile>
-              <v-btn dark color="teal">
+              <v-btn dark color="teal" :to="`/projects/${project.slug}/job-offers/new`">
                 <v-icon left>supervisor_account</v-icon>
                 Recruter
               </v-btn>
