@@ -2,7 +2,6 @@
     <v-navigation-drawer
     permanent
       :mini-variant.sync="miniVariant"
-      :clipped="clipped"
       fixed
       app
     >
@@ -10,8 +9,8 @@
       <v-list>
         <v-list-tile>
           <v-list-tile-title class="title">
+            <img src="/images/circle_logo.png" />
             <span v-if="!miniVariant">Ideka</span>
-            <span v-else>I</span>
           </v-list-tile-title>
         </v-list-tile>
       </v-list>
@@ -27,10 +26,8 @@
         </v-list-tile>
       </v-list>
 
-      <template v-if="user">
-        <organizations-list  :organizations="user.organizations" />
-        <projects-list :projects="user.projects" />
-      </template>
+      <organizations-list :organizations="user.organizations" />
+      <projects-list :projects="user.projects" />
     </v-navigation-drawer>
 </template>
 
@@ -42,7 +39,7 @@ import { mapGetters } from 'vuex';
 export default {
     name: 'left-menu',
 
-    props: ['clipped', 'drawer', 'fixed', 'miniVariant'],
+    props: ['miniVariant'],
 
     components: {
       OrganizationsList,

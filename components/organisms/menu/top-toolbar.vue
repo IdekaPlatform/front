@@ -1,15 +1,6 @@
 <template>
-    <v-toolbar app :clipped-left="clipped">
-      <v-toolbar-side-icon @click="$emit('switchDrawer')"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="$emit('switchMiniVariant')">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="$emit('switchClipped')">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="$emit('switchFixed')">
-        <v-icon>remove</v-icon>
-      </v-btn>
+    <v-toolbar app>
+      <v-toolbar-side-icon v-if="user" @click="$emit('switchMiniVariant')"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -29,8 +20,6 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'top-toolbar',
-
-    props: ['clipped', 'miniVariant'],
 
     computed: {
         ...mapGetters({
