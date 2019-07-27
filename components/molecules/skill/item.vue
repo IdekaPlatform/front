@@ -5,7 +5,11 @@
                 <h4>{{ skill.skill.name }}</h4>
             </v-list-tile-title>
             <v-list-tile-sub-title>
-                <v-rating v-bind:value="skill.level / 2" @input="update($event)" half-increments hover />
+                <v-rating v-bind:value="skill.level / 2"
+                    @input="update($event)"
+                    half-increments
+                    hover
+                    :readonly="!canModify" />
             </v-list-tile-sub-title>
         </v-list-tile-content>
     </v-list-tile>

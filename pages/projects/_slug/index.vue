@@ -9,26 +9,11 @@
       </v-flex>
       <organization-card v-if="project.organization" :organization="project.organization" />
       <owner-card v-else :user="project.user" />
+      <section v-if="isProjectMember" class="mt-3">
+        <project-management-card :project="project" />
+      </section>
       <section class="mt-3">
-        <v-card>
-          <v-card-title>
-            <h3 class="headline mb-0">Gestion</h3>
-          </v-card-title>
-          <v-list v-if="isProjectMember">
-            <v-list-tile>
-              <v-btn dark color="teal" :to="`/projects/${project.slug}/news/new`">
-                <v-icon left>add</v-icon>
-                Créer une news
-              </v-btn>
-            </v-list-tile>
-            <v-list-tile>
-              <v-btn dark color="teal" :to="`/projects/${project.slug}/job-offers/new`">
-                <v-icon left>supervisor_account</v-icon>
-                Recruter
-              </v-btn>
-            </v-list-tile>
-          </v-list>
-        </v-card>
+        <project-members :project="project" :jobOffers="jobOffers" />
         
         <div class="mt-3">
           {{ project.description }}
@@ -60,6 +45,8 @@
 </template>
 
 <script>
+import ProjectManagementCard from '~/components/organisms/project/management-card';
+import ProjectMembers from '~/components/organisms/project/members';
 import OrganizationCard from '~/components/molecules/organization/card'
 import OwnerCard from '~/components/molecules/project/owner-card'
 import SocialBadge from '~/components/atoms/social/badge'
@@ -69,11 +56,12 @@ export default {
   name: 'page-project-details',
 
   async asyncData ({ app, route }) {
-    const [ project, news ] = await Promise.all([
+    const [ project, news, jobOffers ] = await Promise.all([
       app.$repositories.project.get(route.params.slug),
-      app.$repositories.project.getProjectNews({ slug: route.params.slug })
+      app.$repositories.project.getProjectNews({ slug: route.params.slug }),
+      app.$repositories.project.getProjectJobOffers({ slug: route.params.slug })
     ]);
-    return { project, news }
+    return { project, news, jobOffers }
   },
 
   beforeMount() {
@@ -81,6 +69,8 @@ export default {
   },
 
   components: {
+    ProjectManagementCard,
+    ProjectMembers,
     OrganizationCard,
     OwnerCard,
     SocialBadge

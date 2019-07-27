@@ -7,10 +7,10 @@
                 </v-card-title>
 
                 <v-list wrap>
-                    <skill-item v-for="skill in jobOfferSkills" :key="skill.skill.name" :skill="skill" :canModify="true" @updateSkill="updateSkill($event)" />
+                    <skill-item v-for="skill in jobOfferSkills" :key="skill.skill.name" :skill="skill" :canModify="isProjectMember" @updateSkill="updateSkill($event)" />
                 </v-list>
 
-                <v-card-text>
+                <v-card-text v-if="isProjectMember">
                     <v-divider />
                     <v-subheader>Ajouter</v-subheader>
                     <v-select
@@ -48,6 +48,7 @@
 
 <script>
 import SkillItem from '~/components/molecules/skill/item';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'job-offer-details',
@@ -64,6 +65,24 @@ export default {
             selectedSkillType: null,
             selectedSkills: [],
             level: 5,
+        }
+    },
+
+    computed: {
+        ...mapGetters({
+            user: 'user/user'
+        }),
+
+        isProjectMember() {
+            if (this.user === null) {
+                return false
+            }
+            for (const project of this.user.projects) {
+                if (this.jobOffer.project.id === project.id) {
+                    return true
+                }
+            }
+            return false
         }
     },
 
