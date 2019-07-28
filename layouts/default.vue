@@ -1,13 +1,7 @@
 <template>
   <v-app>
-    <left-menu :clipped="clipped" :drawer="drawer" :miniVariant="miniVariant" :fixed="fixed" />
-    <top-toolbar :clipped="clipped"
-          :miniVariant="miniVariant"
-          @switchDrawer="drawer = !drawer"
-          @switchMiniVariant="miniVariant = !miniVariant"
-          @switchClipped="clipped = !clipped"
-          @switchFixed="fixed = !fixed"
-          />
+    <left-menu v-if="user" :miniVariant="miniVariant" />
+    <top-toolbar @switchMiniVariant="miniVariant = !miniVariant" />
     <v-content>
       <v-container fluid>
         <nuxt />
@@ -19,23 +13,25 @@
 <script>
 import LeftMenu from '~/components/organisms/menu/left';
 import TopToolbar from '~/components/organisms/menu/top-toolbar';
+import { mapGetters } from 'vuex';
 
 export default {
     data () {
         return {
-            clipped: false,
-            drawer: true,
-            timeBar: 50,
-            fixed: false,
             miniVariant: false,
-            right: true,
-            rightDrawer: false
         }
     },
 
     components: {
         LeftMenu,
         TopToolbar,
+    },
+
+    computed: {
+      ...mapGetters({
+        user: 'user/user'
+      })
+      
     }
 }
 </script>
