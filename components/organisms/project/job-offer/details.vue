@@ -41,12 +41,25 @@
                     {{ jobOffer.title }}
                 </h2>
             </header>
-            {{ jobOffer.content }}
+            <section>
+                <div v-html="jobOffer.content"></div>
+
+                <candidatures class="mt-3" :candidatures="candidatures" />
+            </section>
+            <footer>
+                <v-btn v-if="user && !isProjectMember" @click="createCandidature()">
+                    Candidater
+                </v-btn>
+                <v-btn v-if="!user" to="/signin">
+                    Connectez-vous pour candidater !
+                </v-btn>
+            </footer>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
+import Candidatures from '~/components/organisms/project/job-offer/candidatures';
 import SkillItem from '~/components/molecules/skill/item';
 import { mapGetters } from 'vuex';
 
@@ -56,6 +69,7 @@ export default {
     props: ['jobOffer', 'skills'],
 
     components: {
+        Candidatures,
         SkillItem
     },
 
@@ -65,7 +79,12 @@ export default {
             selectedSkillType: null,
             selectedSkills: [],
             level: 5,
+            candidatures: [] 
         }
+    },
+
+    async mounted() {
+        this.candidatures = await this.$repositories.project.getCandidatures(this.jobOffer);
     },
 
     computed: {
@@ -100,6 +119,10 @@ export default {
 
         async updateSkill(skill) {
             await this.$repositories.project.updateJobOfferSkillLevel(this.jobOffer, skill);
+        },
+
+        async createCandidature() {
+            await this.$repositories.project.createCandidature(this.jobOffer);
         }
     }
 }
