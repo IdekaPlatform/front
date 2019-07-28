@@ -28,11 +28,15 @@ module.exports = {
     '~/plugins/api.js',
     { src: '~/plugins/ckeditor.js', ssr: false },
     '~/plugins/i18n.js',
-    '~/plugins/icons.js',
-    '~/plugins/vuetify.js'
+    '~/plugins/icons.js'
   ],
 
-  css: ['~/assets/style/app.styl'],
+  devModules: [
+    '@nuxtjs/vuetify'
+  ],
+  vuetify: {
+    /* module options */
+  },
   /*
   ** Customize the progress bar color
   */
