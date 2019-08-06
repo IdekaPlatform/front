@@ -1,20 +1,20 @@
 <template>
     <v-list>
-        <v-list-tile>
-            <v-list-tile-title>
+        <v-list-item>
+            <v-list-item-title>
                 <h3>Mes projets</h3>
-            </v-list-tile-title>
-            <v-list-tile-action>
-                <v-btn to="/projects/new" flat icon>
+            </v-list-item-title>
+            <v-list-item-action>
+                <v-btn to="/projects/new" text icon>
                     <v-icon>add</v-icon>
                 </v-btn>
-            </v-list-tile-action>
-        </v-list-tile>
-        <v-list-tile v-for="project in user.projects" :key="project.slug" :to="`/projects/${project.slug}`">
-            <v-list-tile-content>
+            </v-list-item-action>
+        </v-list-item>
+        <v-list-item v-for="project in user.projects" :key="project.slug" :to="`/projects/${project.slug}`">
+            <v-list-item-content>
                 {{ project.name }}
-            </v-list-tile-content>
-        </v-list-tile>
+            </v-list-item-content>
+        </v-list-item>
     </v-list>
 </template>
 

@@ -1,12 +1,11 @@
 <template>
-    <v-app>
-        <span class="text-md-center title">Projet {{ project.name }} : nouvelle actualité</span>
-        <v-form  v-model="valid">
-            <v-text-field label="Titre" :rules="titleRules" v-model="title" required />
+    <v-app class="new-project-news">
+        <v-form v-model="valid">
+            <v-text-field label="Titre" :rules="titleRules" v-model="title" required color="purple" />
             <no-ssr>
                 <ckeditor id="content" height="200px" v-model="content" :editor="editor" />
             </no-ssr>
-            <v-btn :disabled="!valid" color="success" @click="validate">
+            <v-btn :disabled="!valid" dark color="bossanova" @click="validate">
                 Créer
             </v-btn>
         </v-form>
@@ -24,6 +23,10 @@ export default {
             content: '',
             valid: false,
         };
+    },
+
+    beforeMount() {
+        this.$store.commit('setPageTitle', `${this.project.name} : nouvelle actualité`);
     },
 
     async asyncData ({ app, params }) {
@@ -54,5 +57,10 @@ export default {
 <style lang="less">
     .ck-editor__editable {
         min-height: 200px;
+    }
+
+    .new-project-news {
+        width: 90%;
+        margin: 20px auto;
     }
 </style>

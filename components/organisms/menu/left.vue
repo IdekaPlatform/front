@@ -1,29 +1,20 @@
 <template>
     <v-navigation-drawer
-    permanent
+      class="left-menu blue-grey darken-4"
+      permanent
       :mini-variant.sync="miniVariant"
       fixed
       app
+      dark
     >
 
       <v-list>
-        <v-list-tile>
-          <v-list-tile-title class="title">
-            <img src="/images/circle_logo.png" />
+        <v-list-item to="/" link nuxt active-class="inactive">
+          <v-list-item-title class="title">
+            <img src="/images/logo/circle_logo_64.png" />
             <span v-if="!miniVariant">Ideka</span>
-          </v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-
-      <v-list>
-        <v-list-tile to="/" router exact>
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Accueil</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-title>
+        </v-list-item>
       </v-list>
 
       <organizations-list :organizations="user.organizations" />
@@ -53,4 +44,30 @@ export default {
     }
 }
 </script>
+
+<style lang="less" >
+  @import '~less/variables.less';
+
+  .left-menu {
+    .title {
+      display: flex;
+      align-items: center;
+
+      & > img {
+        width: 48px;
+        margin-right: 10px;
+      }
+    }
+
+    .v-navigation-drawer__border {
+        width: 4px;
+        background-color: @bossanova !important;
+    }
+
+    .inactive {
+      color: transparent !important;
+    }
+  }
+</style>
+
 

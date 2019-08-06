@@ -8,7 +8,7 @@
         </v-card-title>
 
         <v-card-actions>
-            <v-btn flat color="blue" :to="`/organizations/${organization.slug}`">
+            <v-btn text color="blue" :to="`/organizations/${organization.slug}`">
                 {{ $t('organization.see') }}
             </v-btn>
         </v-card-actions>

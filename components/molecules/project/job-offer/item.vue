@@ -1,16 +1,16 @@
 <template>
-    <v-list-tile active-class="highlighted" :class="['job-offer', { highlighted: isActive }]">
-        <v-list-tile-content>
-            <v-list-tile-title>{{ jobOffer.title }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ jobOffer.created_at }}</v-list-tile-sub-title>
-        </v-list-tile-content>
+    <v-list-item :to="`/projects/${jobOffer.project.slug}/job-offers/${jobOffer.id}`" :class="['job-offer', { highlighted: isActive }]">
+        <v-list-item-content>
+            <v-list-item-title>{{ jobOffer.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ jobOffer.created_at }}</v-list-item-subtitle>
+        </v-list-item-content>
 
-        <v-list-tile-action v-if="isProjectMember">
+        <v-list-item-action v-if="isProjectMember">
             <v-btn icon>
                 <v-icon>delete</v-icon>
             </v-btn>
-        </v-list-tile-action>
-    </v-list-tile>
+        </v-list-item-action>
+    </v-list-item>
 </template>
 
 <script>
@@ -44,9 +44,5 @@ export default {
 <style lang="less">
     .job-offer {
         cursor:pointer;
-    }
-
-    .highlighted {
-        background-color: rgba(0,0,0,0.1);
     }
 </style>

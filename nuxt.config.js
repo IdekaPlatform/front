@@ -13,9 +13,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js + Vuetify.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/images/logo/circle_logo_64.png' },
       { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Roboto:300,400,500,700|Material+Icons' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css' }
     ]
   },
@@ -34,8 +34,19 @@ module.exports = {
   devModules: [
     '@nuxtjs/vuetify'
   ],
+  
   vuetify: {
     /* module options */
+    theme: {
+      themes: {
+        light: {
+          bossanova: '#5B315E',
+          lavender: '#B487B8',
+          amethyst: '#B14FC5',
+          cold: '#CFC4C5'
+        }
+      }
+    }
   },
   /*
   ** Customize the progress bar color

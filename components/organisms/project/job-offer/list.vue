@@ -1,6 +1,6 @@
 <template>
     <v-card class="job-offers">
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="bossanova" dark>
             <v-toolbar-title>Annonces en cours</v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -10,11 +10,7 @@
             </v-btn>
         </v-toolbar>
         <v-list>
-            <job-offer v-for="jobOffer in jobOffers"
-                :key="jobOffer.id"
-                :jobOffer="jobOffer"
-                :isActive="isActive(jobOffer)"
-                @click.native="(!isActive(jobOffer)) ? $emit('selectJobOffer', jobOffer) : $emit('unselectJobOffer')" />
+            <job-offer v-for="jobOffer in jobOffers" :key="jobOffer.id" :jobOffer="jobOffer" />
         </v-list>
     </v-card>
 </template>

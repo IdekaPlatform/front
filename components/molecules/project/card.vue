@@ -1,20 +1,20 @@
 <template>
     <v-card class="project-card">
-        <v-card-title class="headline">{{ project.name }}</v-card-title>
+        <v-card-title class="headline justify-center">
+          <h4>{{ project.name }}</h4>
+        </v-card-title>
         <v-card-text>
-          <p v-html="project.short_description"></p>
-          <div class="text-xs-right">
+          <div class="text-center">
             <em>
-              <small v-if="project.organization">{{ project.organization.name }}</small>
-              <small v-else>{{ project.user.username }}</small>
+              Par
+              <span v-if="project.organization">{{ project.organization.name }}</span>
+              <span v-else>{{ project.user.username }}</span>
             </em>
           </div>
-          <hr class="my-3">
-          <span>{{ createdAt }}</span>
+          <p v-html="project.short_description"></p>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt :to="`/projects/${project.slug}`">Voir</v-btn>
+        <v-card-actions class="justify-center">
+          <v-btn text class="purple--text" nuxt :to="`/projects/${project.slug}`">Découvrir le projet</v-btn>
         </v-card-actions>
     </v-card>
 </template>
@@ -34,6 +34,28 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .project-card {
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+    font-family: Lato;
 
+    & > .v-card__title {
+      & > h4 {
+        font-size: 1.4em;
+        font-weight: normal;
+        font-family: Lato !important;
+      }
+    }
+
+    & > .v-card__text {
+      & > div {
+        font-size: 1.0em;
+      }
+
+      & > p {
+        font-size: 1.1em;
+        text-align: justify;
+      }
+    }
+  }
 </style>
 

@@ -1,18 +1,19 @@
 <template>
-    <v-list-tile class="skill-item">
-        <v-list-tile-content>
-            <v-list-tile-title>
+    <v-list-item class="skill-item">
+        <v-list-item-content>
+            <v-list-item-title>
                 <h4>{{ skill.skill.name }}</h4>
-            </v-list-tile-title>
-            <v-list-tile-sub-title>
+            </v-list-item-title>
+            <v-list-item-subtitle>
                 <v-rating v-bind:value="skill.level / 2"
                     @input="update($event)"
                     half-increments
                     hover
+                    color="bossanova"
                     :readonly="!canModify" />
-            </v-list-tile-sub-title>
-        </v-list-tile-content>
-    </v-list-tile>
+            </v-list-item-subtitle>
+        </v-list-item-content>
+    </v-list-item>
 </template>
 
 <script>

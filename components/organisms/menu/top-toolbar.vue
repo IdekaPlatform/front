@@ -1,18 +1,18 @@
 <template>
-    <v-toolbar app>
-      <v-toolbar-side-icon v-if="user" @click="$emit('switchMiniVariant')"></v-toolbar-side-icon>
+    <v-app-bar app dark class="top-toolbar" color="bossanova">
+      <v-app-bar-nav-icon v-if="user" @click="$emit('switchMiniVariant')"></v-app-bar-nav-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
 
       <template v-if="user">
-          <v-btn flat>{{ user.username }}</v-btn>
+          <v-btn text>{{ user.username }}</v-btn>
           <v-btn @click="logout">Déconnexion</v-btn>
       </template>
       <template v-else>
-          <v-btn to="/signin" color="primary">Connexion</v-btn>
-          <v-btn to="/signup">Inscription</v-btn>
+          <v-btn to="/signin" class="purple darken-2">Connexion</v-btn>
+          <v-btn to="/signup" light color="bossanova-text" class="ml-4">Inscription</v-btn>
         </template>
-    </v-toolbar>
+    </v-app-bar>
 </template>
 
 <script>

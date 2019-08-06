@@ -1,25 +1,12 @@
 <template>
     <v-app>
-        <v-layout row>
-            <!-- <v-flex xs6>
-                <job-offer v-else :jobOffer="selectedJobOffer" :skills="skills" />
-            </v-flex> -->
-            <v-flex xs4>
-                <job-offers :jobOffers="jobOffers"
-                    @selectJobOffer="selectedJobOffer = $event" :selectedJobOffer="selectedJobOffer"
-                    @unselectJobOffer="selectedJobOffer = null" />
-            </v-flex>
-            <v-flex xs6 offset-xs1>
-                <job-offer-form v-if="!selectedJobOffer && isProjectMember" :project="project" />
-                <job-offer v-else-if="selectedJobOffer" :jobOffer="selectedJobOffer" :skills="skills" />
-            </v-flex>
-        </v-layout>
+        <job-offers :jobOffers="jobOffers"
+            @selectJobOffer="selectedJobOffer = $event" :selectedJobOffer="selectedJobOffer"
+            @unselectJobOffer="selectedJobOffer = null" />
     </v-app>
 </template>
 
 <script>
-import JobOffer from '~/components/organisms/project/job-offer/details';
-import JobOfferForm from '~/components/organisms/project/job-offer/form';
 import JobOffers from '~/components/organisms/project/job-offer/list';
 import { mapGetters } from 'vuex';
 
@@ -27,8 +14,6 @@ export default {
     name: 'project-team',
 
     components: {
-        JobOffer,
-        JobOfferForm,
         JobOffers
     },
 

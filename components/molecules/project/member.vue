@@ -1,11 +1,11 @@
 <template>
     <div class="member">
         <header>
-            <nuxt-link :to="`/profile/${member.user.username}`" :title="member.user.username">
+            <v-btn :to="`/profile/${member.user.username}`" icon color="purple" :title="member.user.username">
                 <img v-if="member.user.avatar" :src="`/images/avatars/${member.user.avatar}`" />
                 
                 <font-awesome-icon v-else icon="user" size="3x" />
-            </nuxt-link>
+            </v-btn>
         </header>
     </div>
 </template>

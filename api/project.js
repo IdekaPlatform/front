@@ -34,6 +34,10 @@ export default class ProjectRepository extends Repository {
     return this.call('GET', `api/projects/${project.slug}/job-offers`);
   }
 
+  getJobOffer(project, id) {
+    return this.call('GET', `api/projects/${project.slug}/job-offers/${id}`);
+  }
+
   updateJobOfferSkillLevel(jobOffer, skill) {
     return this.call('PATCH', `api/projects/${jobOffer.project.slug}/job-offers/${jobOffer.id}/skills/${skill.skill.id}`, { level: skill.level });
   }

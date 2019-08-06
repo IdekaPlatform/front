@@ -1,7 +1,7 @@
 <template>
     <v-card class="elevation-12">
         <v-form ref="form" v-model="valid">
-            <v-toolbar dark color="secondary">
+            <v-toolbar dark color="bossanova">
                 <v-toolbar-title>Connexion</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
@@ -11,6 +11,7 @@
                             <v-text-field
                                 v-model="pseudo"
                                 label="Pseudo"
+                                color="purple"
                                 required></v-text-field>
                         </v-flex>
                         <v-flex ma-1>
@@ -19,6 +20,7 @@
                                 :rules="[v => !!v || 'Mot de passe obligatoire']"
                                 label="Mot de passe"
                                 type="password"
+                                color="purple"
                                 @keyup.enter="signin"
                                 required
                             ></v-text-field>
@@ -27,9 +29,9 @@
                 </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-btn to="/">Retour</v-btn>
+                <v-btn to="/" class="purple--text">Retour</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="!valid" @click="signin">Se connecter</v-btn>
+                <v-btn :disabled="!valid" class="purple--text" @click="signin">Se connecter</v-btn>
             </v-card-actions>
         </v-form>
     </v-card>

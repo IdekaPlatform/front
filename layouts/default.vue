@@ -3,7 +3,7 @@
     <left-menu v-if="user" :miniVariant="miniVariant" />
     <top-toolbar @switchMiniVariant="miniVariant = !miniVariant" />
     <v-content>
-      <v-container fluid>
+      <v-container fluid class="pa-0">
         <nuxt />
       </v-container>
     </v-content>

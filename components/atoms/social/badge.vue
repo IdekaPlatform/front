@@ -1,5 +1,5 @@
 <template>
-    <v-btn flat icon :href="network.url" target="_blank">
+    <v-btn text icon :href="network.url" target="_blank">
         <font-awesome-icon :icon="icon" :size="size" />
     </v-btn>
 </template>
