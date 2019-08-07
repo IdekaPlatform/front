@@ -32,6 +32,14 @@ export default {
         return { project, id: news.id, title: news.title, content: news.content }
     },
 
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.project.name]: `/projects/${this.project.slug}`,
+            [this.new.title]: `/projects/${this.project.slug}/news/${this.news.id}-${this.news.slug}`,
+            [this.$i18n.t('project.news.edit')]: '#'
+        });
+    },
+
     computed: {
         editor () {
             return (process.client) ? require('@ckeditor/ckeditor5-build-classic') : null;

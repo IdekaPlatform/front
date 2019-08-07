@@ -1,8 +1,15 @@
 {
     "organization": {
+        "new": "Nouvelle organisation",
         "see": "Voir"
     },
     "project": {
-        "created_at": "Créé le {created_at}"
+        "created_at": "Créé le {created_at}",
+        "new": "Nouveau projet",
+        "news": {
+            "edit": "Édition",
+            "new": "Nouvelle actualité"
+        },
+        "team": "Équipe"
     }
 }

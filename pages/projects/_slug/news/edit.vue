@@ -25,14 +25,17 @@ export default {
         };
     },
 
-    beforeMount() {
-        this.$store.commit('setPageTitle', `${this.project.name} : nouvelle actualité`);
-    },
-
     async asyncData ({ app, params }) {
         return {
             project: await app.$repositories.project.get(params.slug)
         }
+    },
+
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.project.name]: `/projects/${this.project.slug}`,
+            [this.$i18n.t('project.news.new')]: '#'
+        });
     },
 
     computed: {

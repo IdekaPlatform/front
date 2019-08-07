@@ -15,7 +15,9 @@ export default {
     },
 
     beforeMount() {
-        this.$store.commit('setPageTitle', this.organization.name)
+        this.$store.commit('breadcrumbs', {
+            [this.organization.name]: `/organizations/${this.organization.slug}`
+        });
     },
 }
 </script>

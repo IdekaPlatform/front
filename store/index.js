@@ -1,6 +1,7 @@
 export const state = () => ({
   sidebar: false,
   pageTitle: 'Ideka',
+  breadcrumbs: {}
 })
 
 export const mutations = {
@@ -8,11 +9,11 @@ export const mutations = {
     state.sidebar = !state.sidebar
   },
 
-  setPageTitle (state, title) {
-    state.pageTitle = title
+  breadcrumbs (state, breadcrumbs) {
+    state.breadcrumbs = breadcrumbs;
   }
 }
 
 export const getters = {
-  pageTitle: state => state.pageTitle
+  breadcrumbs: state => state.breadcrumbs
 }

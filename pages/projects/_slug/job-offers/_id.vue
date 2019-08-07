@@ -21,7 +21,15 @@ export default {
 
     components: {
         JobOffer
-    }
+    },
+
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.jobOffer.project.name]: `/projects/${this.jobOffer.project.slug}`,
+            [this.$i18n.t('project.team')]: `/projects/${this.jobOffer.project.slug}/team`,
+            [this.jobOffer.title]: `/projects/${this.jobOffer.project.slug}/job-offers/${this.jobOffer.id}`
+        });
+    },
 }
 </script>
 

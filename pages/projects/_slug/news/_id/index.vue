@@ -34,7 +34,10 @@ export default {
     },
 
     beforeMount() {
-        this.$store.commit('setPageTitle', this.news.title);
+        this.$store.commit('breadcrumbs', {
+            [this.news.project.name]: `/projects/${this.news.project.slug}`,
+            [this.news.title]: `/projects/${this.news.project.slug}/news/${this.news.id}-${this.news.slug}`
+        });
     },
 
     components: {

@@ -60,9 +60,11 @@
           v => !!v || 'Nom obligatoire'],
       }),
 
-      beforeMount() {
-        this.$store.commit('setPageTitle', 'Ideka')
-      },
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.$i18n.t('organization.new')]: '#'
+        });
+    },
 
       methods: {
         async validate () {

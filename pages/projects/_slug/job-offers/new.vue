@@ -18,7 +18,15 @@ export default {
 
     components: {
         JobOfferForm
-    }
+    },
+
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.project.name]: `/projects/${this.project.slug}`,
+            [this.$i18n.t('project.team')]: `/projects/${this.project.slug}/team`,
+            [this.$i18n.t('project.job_offers.new')]: '#'
+        });
+    },
 }
 </script>
 

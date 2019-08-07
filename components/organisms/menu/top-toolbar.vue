@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app dark class="top-toolbar" color="bossanova">
       <v-app-bar-nav-icon v-if="user" @click="$emit('switchMiniVariant')"></v-app-bar-nav-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <breadcrumbs v-if="!isHomepage" />
       <v-spacer></v-spacer>
 
       <template v-if="user">
@@ -16,16 +16,25 @@
 </template>
 
 <script>
+import Breadcrumbs from '~/components/molecules/menu/breadcrumbs';
 import { mapGetters } from 'vuex';
 
 export default {
     name: 'top-toolbar',
 
+    components: {
+        Breadcrumbs
+    },
+
     computed: {
         ...mapGetters({
             user: 'user/user',
             title: 'pageTitle'
-        })
+        }),
+
+        isHomepage() {
+            return this.$route.path === '/';
+        }
     },
 
     methods: {

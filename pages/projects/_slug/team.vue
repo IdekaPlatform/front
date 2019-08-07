@@ -32,6 +32,13 @@ export default {
         return { project, jobOffers, skills };
     },
 
+    beforeMount() {
+        this.$store.commit('breadcrumbs', {
+            [this.project.name]: `/projects/${this.project.slug}`,
+            [this.$i18n.t('project.team')]: '#'
+        });
+    },
+
     computed: {
         ...mapGetters({
             user: 'user/user'

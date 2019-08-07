@@ -36,7 +36,9 @@ export default {
   },
 
   beforeMount() {
-    this.$store.commit('setPageTitle', this.project.name)
+      this.$store.commit('breadcrumbs', {
+          [this.project.name]: `/projects/${this.project.slug}`
+      });
   },
 
   components: {

@@ -85,7 +85,9 @@ export default {
     }),
 
     beforeMount() {
-      this.$store.commit('setPageTitle', 'Ideka')
+        this.$store.commit('breadcrumbs', {
+            [this.$i18n.t('project.new')]: '#'
+        });
     },
 
     computed: {
