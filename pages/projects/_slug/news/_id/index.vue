@@ -1,7 +1,19 @@
 <template>
     <v-layout column id="project-news-details">
         <header>
-
+            <h3>{{ news.title }}</h3>
+            <nuxt-link class="author" :to="`/profile/${news.author.username}`">
+                <avatar :user="news.author" />
+                {{ news.author.username }}
+            </nuxt-link>
+            <div class="date">
+                <em v-if="published_at !== null">
+                    Publié le {{ new Date(news.published_at).toLocaleDateString('fr-FR', { hour: 'numeric', minute: 'numeric' })}}
+                </em>
+                <em v-else>
+                    Créé le {{ new Date(news.created_at).toLocaleDateString('fr-FR', { hour: 'numeric', minute: 'numeric' }) }}
+                </em>
+            </div>
         </header>
         <section>
             <div class="content" v-html="news.content"></div>
@@ -10,6 +22,8 @@
 </template>
 
 <script>
+import Avatar from '~/components/atoms/user/avatar';
+
 export default {
     name: 'project-news-details',
 
@@ -21,15 +35,55 @@ export default {
 
     beforeMount() {
         this.$store.commit('setPageTitle', this.news.title);
+    },
+
+    components: {
+        Avatar
     }
 }
 </script>
 
 <style lang="less" scoped>
+    @import '~less/variables.less';
+
     #project-news-details {
+        & > header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+
+            & > h3 {
+                color: @bossanova;
+                font-size: 1.5em;
+            }
+
+            & > .author {
+                display: flex;
+                align-items: center;
+                margin: 10px 0px;
+                text-decoration: none;
+                color: grey;
+
+                & > .avatar {
+                    margin-right: 10px;
+                }
+            }
+
+            & > .date {
+                color: grey;
+            }
+        }
+
         & > section {
             & > .content {
-                
+                width: 60%;
+                margin: 20px auto;
+                padding: 20px 40px;
+                box-shadow: 0px 2px 5px rgba(0,0,0,0.6);
+                font-size: 1.2em;
+                font-variant: small-caps;
+                color: grey;
             }
         }
     }
