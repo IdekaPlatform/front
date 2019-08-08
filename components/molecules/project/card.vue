@@ -37,6 +37,7 @@ export default {
   .project-card {
     box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
     font-family: Lato;
+    max-width: 300px;
 
     & > .v-card__title {
       & > h4 {
