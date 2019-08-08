@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
 
       <template v-if="user">
-          <v-btn text>{{ user.username }}</v-btn>
+          <v-btn :to="`/profile/${user.username}`" text>{{ user.username }}</v-btn>
           <v-btn @click="logout">Déconnexion</v-btn>
       </template>
       <template v-else>
