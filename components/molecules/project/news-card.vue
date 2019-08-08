@@ -6,7 +6,7 @@
         <v-card-title>
           <h3 class="headline mb-0">{{ news.title }}</h3>
         </v-card-title>
-        <v-card-text v-html="news.content"></v-card-text>
+        <v-card-text class="content" v-html="news.content"></v-card-text>
         <v-card-text>
             <span class="grey--text right">par {{ news.author.username }} le {{ news.updated_at }}</span>
         </v-card-text>
@@ -63,3 +63,8 @@ export default {
 }
 </script>
 
+<style lang="less" scoped>
+  .news-card {
+    max-width: 300px;
+  }
+</style>

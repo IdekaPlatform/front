@@ -6,7 +6,7 @@
                 <v-icon>add_circle_outline</v-icon>
             </v-btn>
         </header>
-        <v-layout wrap>
+        <v-layout justify-center wrap>
             <project-news-card v-for="n in news" :key="n.id" :project="project" :news="n" />
         </v-layout>
     </div>

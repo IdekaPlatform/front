@@ -5,7 +5,7 @@
       
       <h1>{{ project.name }}</h1>
 
-      <div class="mt-3">
+      <div class="mt-3 description">
         {{ project.description }}
       </div>
     </header>
@@ -70,7 +70,7 @@ export default {
       }
     }
 
-    & > p {
+    & > .description {
       max-width: 60%;
       text-align: justify;
     }
