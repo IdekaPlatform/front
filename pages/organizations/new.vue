@@ -1,16 +1,12 @@
 <template>
-    <v-app>
+    <v-layout column id="page-new-organization">
         <span class="text-md-center title">Organisation</span>
-        <v-form
-                ref="form"
-                v-model="valid"
-        >
+        <v-form ref="form" v-model="valid">
             <v-text-field
                     v-model="name"
                     :rules="nameRules"
                     label="Nom"
-                    required
-            ></v-text-field>
+                    required />
 
             <v-textarea v-model="shortDescription" label="Introduction" required />
 
@@ -40,7 +36,7 @@
             </v-btn>
 
         </v-form>
-    </v-app>
+    </v-layout>
 </template>
 
 <script>
@@ -119,6 +115,9 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+#page-new-organization {
+  width: 80%;
+  margin: 20px auto;
+}
 </style>

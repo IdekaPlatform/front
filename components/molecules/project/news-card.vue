@@ -8,7 +8,7 @@
         </v-card-title>
         <v-card-text class="content" v-html="news.content"></v-card-text>
         <v-card-text>
-            <span class="grey--text right">par {{ news.author.username }} le {{ news.updated_at }}</span>
+            <span class="grey--text right">par {{ news.author.username }} le {{ (new Date(news.updated_at)).toLocaleDateString('fr-FR', { minute: 'numeric', hour: 'numeric' }) }}</span>
         </v-card-text>
         <v-card-actions>
           <v-btn color="teal" text :to="`/projects/${project.slug}/news/${news.id}-${news.slug}`">Lire</v-btn>

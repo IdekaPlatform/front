@@ -17,17 +17,25 @@ export default class ProjectRepository extends Repository {
     return this.call('GET', `api/users/${user.id}/projects`)
   }
 
-  create(name, organizationSlug, shortDescription, description, websiteUrl) {
+  create(data) {
+    return this.call('POST', 'api/projects', this.getBody(data));
+  }
+
+  update(project, data) {
+    return this.call('PUT', `api/projects/${project.slug}`, this.getBody(data));
+  }
+
+  getBody(data) {
     const body = {
-      name,
-      short_description: shortDescription,
-      description,
-      website_url: websiteUrl
+      name: data.name,
+      short_description: data.shortDescription,
+      description: data.description,
+      website_url: data.websiteUrl
     };
-    if (organizationSlug !== null) {
-      body.organization_slug = organizationSlug
+    if (data.organization !== null) {
+      body.organization_slug = data.organization.slug;
     }
-    return this.call('POST', 'api/projects', body)
+    return body;
   }
 
   createJobOffer(project, title, content) {

@@ -3,7 +3,12 @@
     <header>
       <social-networks :networks="project.social_networks" :website="project.website_url" />
       
-      <h1>{{ project.name }}</h1>
+      <h1>
+        {{ project.name }}
+        <v-btn v-if="isProjectMember" icon :to="`/projects/${project.slug}/edit`">
+          <v-icon>edit</v-icon>
+        </v-btn>
+      </h1>
 
       <div class="mt-3 description">
         {{ project.description }}
@@ -22,6 +27,7 @@ import ProjectNews from '~/components/organisms/project/news';
 import OrganizationCard from '~/components/molecules/organization/card'
 import OwnerCard from '~/components/molecules/project/owner-card'
 import SocialNetworks from '~/components/molecules/social/networks'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'page-project-details',
@@ -47,6 +53,24 @@ export default {
     OrganizationCard,
     OwnerCard,
     SocialNetworks
+  },
+
+  computed: {
+    ...mapGetters({
+      user: 'user/user'
+    }),
+
+    isProjectMember() {
+      if (this.user === null) {
+          return false
+      }
+      for (const project of this.user.projects) {
+          if (this.project.id === project.id) {
+          return true
+          }
+      }
+      return false
+    }
   }
 }
 </script>

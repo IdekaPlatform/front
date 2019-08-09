@@ -5,11 +5,13 @@
     },
     "project": {
         "created_at": "Créé le {created_at}",
+        "edit": "Edition",
         "new": "Nouveau projet",
         "news": {
             "edit": "Édition",
             "new": "Nouvelle actualité"
         },
+        "save": "Enregistrer",
         "team": "Équipe"
     }
 }
