@@ -35,7 +35,7 @@ export default {
     },
 
     head() {
-        const description = h2p(this.news.content).subword(50);
+        const description = h2p(this.news.content).subword(100) + '...';
         const meta = [
         {
             property: 'og:title',

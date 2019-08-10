@@ -57,11 +57,11 @@ export default {
     data() {
       return {
         valid: false,
-        name: (this.formData.name) ? this.formData.name : '',
-        websiteUrl: (this.formData.website_url) ? this.formData.website_url : '',
-        organization: (this.formData.organization) ? this.formData.organization : null,
-        shortDescription: (this.formData.short_description) ? this.formData.short_description : '',
-        description: (this.formData.description) ? this.formData.description : '',
+        name: (this.formData && this.formData.name) ? this.formData.name : '',
+        websiteUrl: (this.formData && this.formData.website_url) ? this.formData.website_url : '',
+        organization: (this.formData && this.formData.organization) ? this.formData.organization : null,
+        shortDescription: (this.formData && this.formData.short_description) ? this.formData.short_description : '',
+        description: (this.formData && this.formData.description) ? this.formData.description : '',
         show: false,
         imgDataUrl: null,
         nameRules: [
