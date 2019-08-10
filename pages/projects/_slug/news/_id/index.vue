@@ -23,6 +23,7 @@
 
 <script>
 import Avatar from '~/components/atoms/user/avatar';
+import h2p from 'html2plaintext';
 
 export default {
     name: 'project-news-details',
@@ -31,6 +32,63 @@ export default {
         return {
             news: await app.$repositories.project.getNews(params.slug, params.id.split('-').shift()),
         };
+    },
+
+    head() {
+        const description = h2p(this.news.content).subword(50);
+        const meta = [
+        {
+            property: 'og:title',
+            hid: 'og:title',
+            content: this.news.title
+        },
+        {
+            property: 'og:description',
+            hid: 'og:description',
+            content: description
+        },
+        {
+            property: 'og:type',
+            hid: 'og:type',
+            content: 'article'
+        },
+        {
+            property: 'author',
+            hid: 'author',
+            content: this.news.author.username,
+        },
+        {
+            property: 'article:author',
+            hid: 'article:author',
+            content: this.news.author.username,
+        },
+        {
+            property: 'article:published_time',
+            hid: 'article_published_time',
+            content: this.news.published_at,
+        },
+        {
+            property: 'article:modified_time',
+            hid: 'article.modified_time',
+            content: this.news.updated_at
+        },
+        {
+            name: 'twitter:title',
+            content: this.news.title,
+            hid: 'twitter:title'
+        },
+        {
+            name: 'twitter:description',
+            content: description,
+            hid: 'twitter:description'
+        },
+        {
+            name: 'description',
+            content: description,
+            hid: 'description'
+        },
+        ];
+        return { meta };
     },
 
     beforeMount() {

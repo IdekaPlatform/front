@@ -27,10 +27,42 @@ import ProjectNews from '~/components/organisms/project/news';
 import OrganizationCard from '~/components/molecules/organization/card'
 import OwnerCard from '~/components/molecules/project/owner-card'
 import SocialNetworks from '~/components/molecules/social/networks'
+import h2p from 'html2plaintext';
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'page-project-details',
+
+  head() {
+    const meta = [
+      {
+        property: 'og:title',
+        hid: 'og:title',
+        content: this.project.title
+      },
+      {
+        property: 'og:description',
+        hid: 'og:description',
+        content: this.project.short_description
+      },
+      {
+        name: 'twitter:title',
+        content: this.project.title,
+        hid: 'twitter:title'
+      },
+      {
+        name: 'twitter:description',
+        content: h2p(this.project.short_description),
+        hid: 'twitter:description'
+      },
+      {
+        name: 'description',
+        content: h2p(this.project.short_description),
+        hid: 'description'
+      },
+    ];
+    return { meta };
+  },
 
   async asyncData ({ app, route }) {
     const [ project, news, jobOffers ] = await Promise.all([

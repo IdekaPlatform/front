@@ -7,6 +7,7 @@
 <script>
 import JobOffer from '~/components/organisms/project/job-offer/details';
 import JobOfferForm from '~/components/organisms/project/job-offer/form';
+import h2p from 'html2plaintext';
 
 export default {
     name: 'page-job-offer-details',
@@ -17,6 +18,37 @@ export default {
             app.$repositories.skill.getAll()
         ])
         return { jobOffer, skills };
+    },
+
+    head() {
+        const meta = [
+        {
+            property: 'og:title',
+            hid: 'og:title',
+            content: this.jobOffer.title
+        },
+        {
+            property: 'og:description',
+            hid: 'og:description',
+            content: this.jobOffer.content
+        },
+        {
+            name: 'twitter:title',
+            content: this.jobOffer.title,
+            hid: 'twitter:title'
+        },
+        {
+            name: 'twitter:description',
+            content: h2p(this.jobOffer.content),
+            hid: 'twitter:description'
+        },
+        {
+            name: 'description',
+            content: h2p(this.jobOffer.content),
+            hid: 'description'
+        },
+        ];
+        return { meta };
     },
 
     components: {

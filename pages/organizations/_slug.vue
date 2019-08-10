@@ -17,6 +17,7 @@
 <script>
 import ProjectCard from '~/components/molecules/project/card';
 import SocialNetworks from '~/components/molecules/social/networks';
+import h2p from 'html2plaintext';
 
 export default {
     name: 'page-organization-details',
@@ -26,6 +27,37 @@ export default {
             organization: await app.$repositories.organization.get(params.slug),
             projects: await app.$repositories.project.getOrganizationProjects({ slug: params.slug })
         };
+    },
+
+    head() {
+        const meta = [
+        {
+            property: 'og:title',
+            hid: 'og:title',
+            content: this.organization.name
+        },
+        {
+            property: 'og:description',
+            hid: 'og:description',
+            content: this.organization.short_description
+        },
+        {
+            name: 'twitter:title',
+            content: this.organization.name,
+            hid: 'twitter:title'
+        },
+        {
+            name: 'twitter:description',
+            content: h2p(this.organization.short_description),
+            hid: 'twitter:description'
+        },
+        {
+            name: 'description',
+            content: h2p(this.organization.short_description),
+            hid: 'description'
+        },
+        ];
+        return { meta };
     },
 
     beforeMount() {

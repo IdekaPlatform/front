@@ -30,6 +30,7 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^24.7.1",
     "babel-preset-env": "^1.7.0",
+    "html2plaintext": "^2.1.2",
     "jest-fetch-mock": "^2.1.2",
     "js-cookie": "^2.2.0",
     "less": "^3.9.0",
