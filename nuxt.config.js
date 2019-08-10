@@ -10,7 +10,18 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js + Vuetify.js project' }
+      { hid: 'description', name: 'description', content: 'Ideka is a community platform helping projects and people to evolve' },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:url', name: 'og:url', content: process.env.WEBSITE_URL },
+      { hid: 'og:title', name: 'og:title', content: 'Ideka' },
+      { hid: 'og:site_name', name: 'og:site_name', content: 'Ideka' },
+      { hid: 'og:locale', name: 'og:locale', content: 'fr' },
+      { hid: 'og:image', name: 'og:image', content: `${process.env.WEBSITE_URL}/images/logo/circle_logo_500.png` },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'Ideka' },
+      { hid: 'twitter:description', name: 'twitter:description', content: 'Ideka is a community platform helping projects and people to evolve' },
+      { hid: 'twitter:image', name: 'twitter:image', content: `${process.env.WEBSITE_URL}/images/logo/circle_logo_500.png` },
+      { hid: 'twitter:image:alt', name: 'twitter:image:alt', content: 'Logo' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/images/logo/circle_logo_64.png' },
@@ -28,7 +39,8 @@ module.exports = {
     '~/plugins/api.js',
     { src: '~/plugins/ckeditor.js', ssr: false },
     '~/plugins/i18n.js',
-    '~/plugins/icons.js'
+    '~/plugins/icons.js',
+    '~/plugins/lib.js'
   ],
 
   devModules: [
