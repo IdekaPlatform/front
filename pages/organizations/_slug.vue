@@ -57,7 +57,10 @@ export default {
             hid: 'description'
         },
         ];
-        return { meta };
+        return {
+            title: this.organization.name,
+            meta
+        };
     },
 
     beforeMount() {

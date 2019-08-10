@@ -88,7 +88,10 @@ export default {
             hid: 'description'
         },
         ];
-        return { meta };
+        return {
+            title: this.news.title,
+            meta
+        };
     },
 
     beforeMount() {

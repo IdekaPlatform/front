@@ -61,7 +61,10 @@ export default {
         hid: 'description'
       },
     ];
-    return { meta };
+    return {
+      title: this.project.name,
+      meta
+    };
   },
 
   async asyncData ({ app, route }) {

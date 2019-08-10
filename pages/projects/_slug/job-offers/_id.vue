@@ -22,33 +22,36 @@ export default {
 
     head() {
         const meta = [
-        {
-            property: 'og:title',
-            hid: 'og:title',
-            content: this.jobOffer.title
-        },
-        {
-            property: 'og:description',
-            hid: 'og:description',
-            content: this.jobOffer.content
-        },
-        {
-            name: 'twitter:title',
-            content: this.jobOffer.title,
-            hid: 'twitter:title'
-        },
-        {
-            name: 'twitter:description',
-            content: h2p(this.jobOffer.content),
-            hid: 'twitter:description'
-        },
-        {
-            name: 'description',
-            content: h2p(this.jobOffer.content),
-            hid: 'description'
-        },
+            {
+                property: 'og:title',
+                hid: 'og:title',
+                content: this.jobOffer.title
+            },
+            {
+                property: 'og:description',
+                hid: 'og:description',
+                content: this.jobOffer.content
+            },
+            {
+                name: 'twitter:title',
+                content: this.jobOffer.title,
+                hid: 'twitter:title'
+            },
+            {
+                name: 'twitter:description',
+                content: h2p(this.jobOffer.content),
+                hid: 'twitter:description'
+            },
+            {
+                name: 'description',
+                content: h2p(this.jobOffer.content),
+                hid: 'description'
+            },
         ];
-        return { meta };
+        return {
+            title: this.jobOffer.title,
+            meta
+        };
     },
 
     components: {
