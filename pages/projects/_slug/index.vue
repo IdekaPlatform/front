@@ -38,7 +38,7 @@ export default {
       {
         property: 'og:title',
         hid: 'og:title',
-        content: this.project.title
+        content: this.project.name
       },
       {
         property: 'og:description',
@@ -47,7 +47,7 @@ export default {
       },
       {
         name: 'twitter:title',
-        content: this.project.title,
+        content: this.project.name,
         hid: 'twitter:title'
       },
       {
