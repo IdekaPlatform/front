@@ -79,18 +79,25 @@
       }),
       methods: {
         async signup () {
-            const tokens = await this.$repositories.user.create(this.pseudo, this.email, this.password);
+            try {
+              const tokens = await this.$repositories.user.create(this.pseudo, this.email, this.password);
 
-            await this.$store.dispatch('user/storeToken', tokens);
-            this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
-            const [ organizations, projects ] = await Promise.all([
-                this.$repositories.organization.getUserOrganizations(this.$store.getters['user/user']),
-                this.$repositories.project.getUserProjects(this.$store.getters['user/user'])
-            ]);
-            this.$store.commit('user/setOrganizations', organizations)
-            this.$store.commit('user/setProjects', projects)
-            
-            this.$router.push('/')
+              await this.$store.dispatch('user/storeToken', tokens);
+              this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
+              const [ organizations, projects ] = await Promise.all([
+                  this.$repositories.organization.getUserOrganizations(this.$store.getters['user/user']),
+                  this.$repositories.project.getUserProjects(this.$store.getters['user/user'])
+              ]);
+              this.$store.commit('user/setOrganizations', organizations)
+              this.$store.commit('user/setProjects', projects)
+              
+              this.$router.push('/')
+            } catch(err) {
+              this.$store.dispatch('notifications/add', {
+                type: 'success',
+                message: err.message
+              })
+            }
         }
       },
       watch: {

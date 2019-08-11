@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app>
         <v-content>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
@@ -9,15 +9,26 @@
                 </v-layout>
             </v-container>
         </v-content>
+        <notifications />
     </v-app>
 </template>
 
 <script>
-    export default {
-      name: 'login',
+import Notifications from '~/components/organisms/notifications';
+export default {
+    name: 'login',
+
+    components: {
+        Notifications
     }
+}
 </script>
 
 <style scoped>
-
+    .notifications {
+        position: absolute;
+        width: 60%;
+        top: 0px;
+        left: 20%;
+    }
 </style>

@@ -1,26 +1,16 @@
 <template>
-    <v-app>
-        <job-offers :jobOffers="jobOffers"
-            @selectJobOffer="selectedJobOffer = $event" :selectedJobOffer="selectedJobOffer"
-            @unselectJobOffer="selectedJobOffer = null" />
-    </v-app>
+    <v-layout column id="team">
+        <job-offers :project="project" :jobOffers="jobOffers" />
+    </v-layout>
 </template>
 
 <script>
 import JobOffers from '~/components/organisms/project/job-offer/list';
-import { mapGetters } from 'vuex';
-
 export default {
     name: 'project-team',
 
     components: {
         JobOffers
-    },
-
-    data() {
-        return {
-            selectedJobOffer: null
-        };
     },
 
     async asyncData ({ app, params }) {
@@ -37,29 +27,16 @@ export default {
             [this.project.name]: `/projects/${this.project.slug}`,
             [this.$i18n.t('project.team')]: '#'
         });
-    },
-
-    computed: {
-        ...mapGetters({
-            user: 'user/user'
-        }),
-
-        isProjectMember() {
-            if (this.user === null) {
-                return false
-            }
-            for (const project of this.user.projects) {
-                if (this.project.id === project.id) {
-                    return true
-                }
-            }
-            return false
-        }
     }
 }
 </script>
 
 <style lang="less">
+    .job-offers {
+        width: 60%;
+        margin: 50px auto;
+    }
+
     .ck-editor__editable {
         min-height: 200px;
     }

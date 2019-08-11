@@ -1,16 +1,18 @@
 <template>
-    <v-app>
-        <span class="text-md-center title">Projet {{ project.name }} : édition d'actualité</span>
-        <v-form  v-model="valid">
-            <v-text-field label="Titre" :rules="titleRules" v-model="title" required />
-            <no-ssr>
-                <ckeditor id="content" height="200px" v-model="content" :editor="editor" />
-            </no-ssr>
-            <v-btn :disabled="!valid" color="success" @click="validate">
-                Mettre à jour
-            </v-btn>
-        </v-form>
-    </v-app>
+    <v-layout column>
+        <div class="news-form">
+            <span class="text-md-center title">Projet {{ project.name }} : édition d'actualité</span>
+            <v-form  v-model="valid">
+                <v-text-field label="Titre" :rules="titleRules" v-model="title" required />
+                <no-ssr>
+                    <ckeditor id="content" height="200px" v-model="content" :editor="editor" />
+                </no-ssr>
+                <v-btn :disabled="!valid" color="success" @click="validate">
+                    Mettre à jour
+                </v-btn>
+            </v-form>
+        </div>
+    </v-layout>
 </template>
 
 <script>
@@ -35,7 +37,7 @@ export default {
     beforeMount() {
         this.$store.commit('breadcrumbs', {
             [this.project.name]: `/projects/${this.project.slug}`,
-            [this.new.title]: `/projects/${this.project.slug}/news/${this.news.id}-${this.news.slug}`,
+            [this.id]: `/projects/${this.project.slug}/news/${this.id}-${this.slug}`,
             [this.$i18n.t('project.news.edit')]: '#'
         });
     },
@@ -51,9 +53,20 @@ export default {
             if (!this.valid) {
                 return false;
             }
-            await this.$repositories.project.updateNews(this.project, this.id, this.title, this.content);
+            try {
+                await this.$repositories.project.updateNews(this.project, this.id, this.title, this.content);
 
-            this.$router.push(`/projects/${this.project.slug}`);
+                this.$store.dispatch('notifications/add', {
+                    type: 'success',
+                    message: 'project.news.edited'
+                });
+                this.$router.push(`/projects/${this.project.slug}`);
+            } catch(err) {
+                this.$store.dispatch('notifications/add', {
+                    type: 'error',
+                    message: err.message
+                });
+            }
         }
     }
 }
@@ -62,5 +75,10 @@ export default {
 <style lang="less">
     .ck-editor__editable {
         min-height: 200px;
+    }
+
+    .news-form {
+        width: 80%;
+        margin: 50px auto;
     }
 </style>

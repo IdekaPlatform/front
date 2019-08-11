@@ -49,9 +49,20 @@ export default {
             if (!this.valid) {
                 return false;
             }
-            await this.$repositories.project.createNews(this.project, this.title, this.content);
+            try {
+                await this.$repositories.project.createNews(this.project, this.title, this.content);
 
-            this.$router.push(`/projects/${this.project.slug}`);
+                this.$store.dispatch('notifications/add', {
+                    type: 'success',
+                    message: 'project.news.created'
+                });
+                this.$router.push(`/projects/${this.project.slug}`);
+            } catch(err) {
+                this.$store.dispatch('notifications/add', {
+                    type: 'error',
+                    message: err.message
+                });
+            }
         }
     }
 }

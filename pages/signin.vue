@@ -1,11 +1,10 @@
 <template>
     <v-card class="elevation-12">
-        <v-form ref="form" v-model="valid">
+        <v-form ref="form" v-model="valid" @submit="signin">
             <v-toolbar dark color="bossanova">
                 <v-toolbar-title>Connexion</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
-                <v-form v-model="valid" @submit="signin">
                     <v-layout wrap justify-center>
                         <v-flex ma-1>
                             <v-text-field
@@ -26,7 +25,6 @@
                             ></v-text-field>
                         </v-flex>
                     </v-layout>
-                </v-form>
             </v-card-text>
             <v-card-actions>
                 <v-btn to="/" class="purple--text">Retour</v-btn>
@@ -53,18 +51,25 @@
 
       methods: {
         async signin () {
-            const data = await this.$repositories.user.login(this.pseudo, this.password);
+            try {
+                const data = await this.$repositories.user.login(this.pseudo, this.password);
 
-            await this.$store.dispatch('user/storeToken', data);
+                await this.$store.dispatch('user/storeToken', data);
 
-            this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
-            const [ organizations, projects ] = await Promise.all([
-                this.$repositories.organization.getUserOrganizations(this.$store.getters['user/user']),
-                this.$repositories.project.getUserProjects(this.$store.getters['user/user'])
-            ]);
-            this.$store.commit('user/setOrganizations', organizations)
-            this.$store.commit('user/setProjects', projects)
-            this.$router.push('/');
+                this.$store.commit('user/setUser', await this.$repositories.user.getMyInfos());
+                const [ organizations, projects ] = await Promise.all([
+                    this.$repositories.organization.getUserOrganizations(this.$store.getters['user/user']),
+                    this.$repositories.project.getUserProjects(this.$store.getters['user/user'])
+                ]);
+                this.$store.commit('user/setOrganizations', organizations)
+                this.$store.commit('user/setProjects', projects)
+                this.$router.push('/');
+            } catch(err) {
+                this.$store.dispatch('notifications/add', {
+                    type: 'error',
+                    message: err.message
+                })
+            }
         }
       },
     }

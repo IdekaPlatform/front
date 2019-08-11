@@ -4,14 +4,23 @@
         "see": "Voir"
     },
     "project": {
+        "created": "Votre projet a été créé avec succès !",
         "created_at": "Créé le {created_at}",
         "edit": "Edition",
+        "job_offer": {
+            "created": "Votre annonce de recrutement a été créée avec succès !"
+        },
+        "name_already_taken": "Un autre projet avec ce nom existe déjà",
         "new": "Nouveau projet",
         "news": {
+            "created": "Votre actualité a été créée avec succès !",
             "edit": "Édition",
+            "edited": "Votre actualité a été mise à jour avec succès !",
             "new": "Nouvelle actualité"
         },
         "save": "Enregistrer",
-        "team": "Équipe"
-    }
+        "team": "Équipe",
+        "updated": "Votre projet a été mis à jour avec succès !"
+    },
+    "unauthorized": "Identifiants invalides"
 }

@@ -29,9 +29,19 @@ export default {
 
     methods: {
         async update(data) {
-            const project = await this.$repositories.project.update(this.project, data);
-
-            this.$router.push(`/projects/${project.slug}`);
+            try {
+                const project = await this.$repositories.project.update(this.project, data);
+                this.$store.dispatch('notifications/add', {
+                    type: 'success',
+                    message: 'project.updated'
+                });
+                this.$router.push(`/projects/${project.slug}`);
+            } catch(err) {
+                this.$store.dispatch('notifications/add', {
+                    type: 'error',
+                    message: err.message
+                });
+            }
         }
     }
 }

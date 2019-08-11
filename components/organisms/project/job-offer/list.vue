@@ -5,7 +5,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn v-if="selectedJobOffer !== null" icon @click="$emit('unselectJobOffer')">
+            <v-btn v-if="isProjectMember" icon :to="`/projects/${project.slug}/job-offers/new`">
                 <v-icon>add</v-icon>
             </v-btn>
         </v-toolbar>
@@ -17,19 +17,32 @@
 
 <script>
 import JobOffer from '~/components/molecules/project/job-offer/item';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'job-offers-list',
 
-    props: ['jobOffers', 'selectedJobOffer'],
+    props: ['project', 'jobOffers'],
 
     components: {
         JobOffer
     },
 
-    methods: {
-        isActive(jobOffer) {
-            return jobOffer === this.selectedJobOffer;
+    computed: {
+        ...mapGetters({
+            user: 'user/user'
+        }),
+
+        isProjectMember() {
+            if (this.user === null) {
+                return false
+            }
+            for (const project of this.user.projects) {
+                if (this.project.id === project.id) {
+                    return true
+                }
+            }
+            return false
         }
     }
 }
