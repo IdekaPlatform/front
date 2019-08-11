@@ -1,5 +1,13 @@
-## [0.1.0] - 2019-08-10
+## [0.1.1] - 2019-08-11
+### Added
+- Action notifications
 
+### Fixed
+- Project name in Meta tags
+- Main pages title
+- Project creation
+
+## [0.1.0] - 2019-08-10
 ### Added
 - Organization creation
 - Organization page
