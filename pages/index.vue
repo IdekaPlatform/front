@@ -42,10 +42,6 @@ export default {
     }
   },
 
-  beforeMount() {
-    this.$store.commit('setPageTitle', 'Ideka')
-  },
-
   components: {
     ProjectPanorama
   }

@@ -39,9 +39,10 @@ export default {
             if (!this.valid) {
                 return false;
             }
-            await this.$repositories.project.createJobOffer(this.project, this.title, this.content);
-
-            this.$router.push(`/projects/${this.project.slug}`);
+            this.$emit('validate', {
+                title: this.title,
+                content: this.content,
+            });
         }
     }
 }

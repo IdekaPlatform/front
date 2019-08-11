@@ -7,12 +7,14 @@
         <nuxt />
       </v-container>
     </v-content>
+    <notifications />
   </v-app>
 </template>
 
 <script>
 import LeftMenu from '~/components/organisms/menu/left';
 import TopToolbar from '~/components/organisms/menu/top-toolbar';
+import Notifications from '~/components/organisms/notifications';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -25,6 +27,7 @@ export default {
     components: {
         LeftMenu,
         TopToolbar,
+        Notifications
     },
 
     computed: {
@@ -35,3 +38,11 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+.notifications {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+</style>

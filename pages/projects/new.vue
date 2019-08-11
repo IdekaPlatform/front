@@ -26,10 +26,22 @@ export default {
 
     methods: {
       async create (data) {
-        const project = await this.$repositories.project.create(data);
-        this.$store.commit('user/addProject', project);
-        this.$router.push(`/projects/${project.slug}`)
+        try {
+          const project = await this.$repositories.project.create(data);
+          this.$store.dispatch('notifications/add', {
+            type: 'success',
+            message: 'project.created'
+          });
+          this.$store.commit('user/addProject', project);
+          this.$router.push(`/projects/${project.slug}`)
+        } catch(err) {
+          this.$store.dispatch('notifications/add', {
+            type: 'error',
+            message: err.message
+          })
+        }
       },
+
       toggleShow () {
         this.show = !this.show
       },
