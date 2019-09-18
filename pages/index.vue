@@ -109,6 +109,10 @@ export default {
   }
 
   .news {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+
     & > header {
       margin: 20px 0px;
       & > h2 {
@@ -118,6 +122,7 @@ export default {
 
     & > div {
       display: flex;
+      align-items: flex-start;
       justify-content: center;
 
       & > .project-news-card {
