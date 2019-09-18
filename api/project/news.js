@@ -9,6 +9,10 @@ export default class NewsRepository extends Repository {
     return this.call('PUT', `api/projects/${project.slug}/news/${id}`, { title, content });
   }
 
+  getLastNews() {
+    return this.call('GET', 'api/news/last');
+  }
+
   getProjectNews(project) {
     return this.call('GET', `api/projects/${project.slug}/news`);
   }
