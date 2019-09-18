@@ -12,7 +12,7 @@ export default {
     
     async asyncData({ app, params }) {
         return {
-            project: await app.$repositories.project.get(params.slug)
+            project: await app.$repositories.project.project.get(params.slug)
         }
     },
 
@@ -31,7 +31,7 @@ export default {
     methods: {
         async create(data) {
             try {
-                const jobOffer = await this.$repositories.project.createJobOffer(this.project, data.title, data.content);
+                const jobOffer = await this.$repositories.project.job_offer.createJobOffer(this.project, data.title, data.content);
 
                 this.$store.dispatch('notifications/add', {
                     type: 'success',

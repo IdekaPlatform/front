@@ -84,7 +84,7 @@ export default {
     },
 
     async mounted() {
-        this.candidatures = await this.$repositories.project.getCandidatures(this.jobOffer);
+        this.candidatures = await this.$repositories.project.candidature.getCandidatures(this.jobOffer);
     },
 
     computed: {
@@ -118,11 +118,11 @@ export default {
         },
 
         async updateSkill(skill) {
-            await this.$repositories.project.updateJobOfferSkillLevel(this.jobOffer, skill);
+            await this.$repositories.project.job_offer.updateJobOfferSkillLevel(this.jobOffer, skill);
         },
 
         async createCandidature() {
-            await this.$repositories.project.createCandidature(this.jobOffer);
+            await this.$repositories.project.candidature.createCandidature(this.jobOffer);
         }
     }
 }

@@ -10,7 +10,7 @@ const authenticate = async (app, store, req) => {
             store.commit('user/setUser', await app.$repositories.user.getMyInfos());
             const [ organizations, projects ] = await Promise.all([
                 app.$repositories.organization.getUserOrganizations(store.getters['user/user']),
-                app.$repositories.project.getUserProjects(store.getters['user/user'])
+                app.$repositories.project.project.getUserProjects(store.getters['user/user'])
             ]);
             store.commit('user/setOrganizations', organizations)
             store.commit('user/setProjects', projects)

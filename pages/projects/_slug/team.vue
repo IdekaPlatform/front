@@ -15,8 +15,8 @@ export default {
 
     async asyncData ({ app, params }) {
         const [ project, jobOffers, skills ] = await Promise.all([
-            app.$repositories.project.get(params.slug),
-            app.$repositories.project.getProjectJobOffers({ slug: params.slug }),
+            app.$repositories.project.project.get(params.slug),
+            app.$repositories.project.job_offer.getProjectJobOffers({ slug: params.slug }),
             app.$repositories.skill.getAll()
         ])
         return { project, jobOffers, skills };

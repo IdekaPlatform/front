@@ -69,9 +69,9 @@ export default {
 
   async asyncData ({ app, route }) {
     const [ project, news, jobOffers ] = await Promise.all([
-      app.$repositories.project.get(route.params.slug),
-      app.$repositories.project.getProjectNews({ slug: route.params.slug }),
-      app.$repositories.project.getProjectJobOffers({ slug: route.params.slug })
+      app.$repositories.project.project.get(route.params.slug),
+      app.$repositories.project.news.getProjectNews({ slug: route.params.slug }),
+      app.$repositories.project.job_offer.getProjectJobOffers({ slug: route.params.slug })
     ]);
     return { project, news, jobOffers }
   },

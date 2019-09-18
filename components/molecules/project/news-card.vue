@@ -49,13 +49,13 @@ export default {
 
   methods: {
     async publish() {
-      await this.$repositories.project.publishNews(this.news)
+      await this.$repositories.project.news.publishNews(this.news)
 
       this.news.is_published = true
     },
 
     async unpublish() {
-      await this.$repositories.project.unpublishNews(this.news)
+      await this.$repositories.project.news.unpublishNews(this.news)
 
       this.news.is_published = false
     }

@@ -25,7 +25,7 @@ export default {
     async asyncData({ app, params }) {
         return {
             organization: await app.$repositories.organization.get(params.slug),
-            projects: await app.$repositories.project.getOrganizationProjects({ slug: params.slug })
+            projects: await app.$repositories.project.project.getOrganizationProjects({ slug: params.slug })
         };
     },
 

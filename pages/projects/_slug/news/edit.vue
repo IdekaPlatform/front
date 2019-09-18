@@ -27,7 +27,7 @@ export default {
 
     async asyncData ({ app, params }) {
         return {
-            project: await app.$repositories.project.get(params.slug)
+            project: await app.$repositories.project.project.get(params.slug)
         }
     },
 
@@ -50,7 +50,7 @@ export default {
                 return false;
             }
             try {
-                await this.$repositories.project.createNews(this.project, this.title, this.content);
+                await this.$repositories.project.news.createNews(this.project, this.title, this.content);
 
                 this.$store.dispatch('notifications/add', {
                     type: 'success',

@@ -38,7 +38,7 @@ export default {
 
   async asyncData ({ app }) {
     return {
-      projects: await app.$repositories.project.getAll()
+      projects: await app.$repositories.project.project.getAll()
     }
   },
 

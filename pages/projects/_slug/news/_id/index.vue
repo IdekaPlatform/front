@@ -30,7 +30,7 @@ export default {
 
     async asyncData({ app, params }) {
         return {
-            news: await app.$repositories.project.getNews(params.slug, params.id.split('-').shift()),
+            news: await app.$repositories.project.news.getNews(params.slug, params.id.split('-').shift()),
         };
     },
 

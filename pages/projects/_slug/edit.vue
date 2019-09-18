@@ -12,7 +12,7 @@ export default {
 
     async asyncData({ app, params }) {
         return {
-            project: await app.$repositories.project.get(params.slug)
+            project: await app.$repositories.project.project.get(params.slug)
         };
     },
 
@@ -30,7 +30,7 @@ export default {
     methods: {
         async update(data) {
             try {
-                const project = await this.$repositories.project.update(this.project, data);
+                const project = await this.$repositories.project.project.update(this.project, data);
                 this.$store.dispatch('notifications/add', {
                     type: 'success',
                     message: 'project.updated'
