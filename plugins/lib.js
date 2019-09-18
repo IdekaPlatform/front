@@ -1,4 +1,7 @@
 String.prototype.subword = function(length) {
+    if (this.length < length) {
+        return this;
+    }
     //trim the string to the maximum length
     const trimmedString = this.substr(0, length);
 

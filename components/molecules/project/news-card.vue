@@ -6,7 +6,7 @@
         <v-card-title>
           <h3 class="headline mb-0">{{ news.title }}</h3>
         </v-card-title>
-        <v-card-text class="content" v-html="news.content"></v-card-text>
+        <v-card-text class="content">{{ intro }}..</v-card-text>
         <v-card-text>
             <span class="grey--text right">par {{ news.author.username }} le {{ (new Date(news.updated_at)).toLocaleDateString('fr-FR', { minute: 'numeric', hour: 'numeric' }) }}</span>
         </v-card-text>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import h2p from 'html2plaintext';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -44,6 +45,10 @@ export default {
                 }
             }
             return false
+        },
+
+        intro() {
+          return h2p(this.news.content).subword(255);
         }
     },
 
