@@ -24,6 +24,14 @@
           </p>
         </div>
       </section>
+      <section class="news">
+        <header>
+          <h2>Dernières actualités</h2>
+        </header>
+        <div>
+          <project-news-card v-for="n in news" :key="n.id" :project="n.project" :news="n" />
+        </div>
+      </section>
       <section class="projects">
         <project-panorama :projects="projects" />
       </section>
@@ -32,18 +40,21 @@
 
 <script>
 import ProjectPanorama from '~/components/organisms/project/panorama';
+import ProjectNewsCard from '~/components/molecules/project/news-card';
 
 export default {
   name: 'page-home',
 
   async asyncData ({ app }) {
     return {
-      projects: await app.$repositories.project.getAll()
+      projects: await app.$repositories.project.project.getAll(),
+      news: await app.$repositories.project.news.getLastNews()
     }
   },
 
   components: {
-    ProjectPanorama
+    ProjectPanorama,
+    ProjectNewsCard
   }
 }
 </script>
@@ -93,6 +104,25 @@ export default {
         margin-top: 10px;
         text-align: justify;
         font-size: 1.1em;
+      }
+    }
+  }
+
+  .news {
+    & > header {
+      margin: 20px 0px;
+      & > h2 {
+        text-align: center;
+      }
+    }
+
+    & > div {
+      display: flex;
+      justify-content: center;
+
+      & > .project-news-card {
+        margin: 10px;
+        flex-basis: 33%;
       }
     }
   }

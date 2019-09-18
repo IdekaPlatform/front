@@ -27,7 +27,7 @@ export default {
     methods: {
       async create (data) {
         try {
-          const project = await this.$repositories.project.create(data);
+          const project = await this.project.project.create(data);
           this.$store.dispatch('notifications/add', {
             type: 'success',
             message: 'project.created'

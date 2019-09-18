@@ -28,8 +28,8 @@ export default {
 
     async asyncData ({ app, params }) {
         const [ project, news ] = await Promise.all([
-            app.$repositories.project.get(params.slug),
-            app.$repositories.project.getNews(params.slug, params.id.split('-')[0])
+            app.$repositories.project.project.get(params.slug),
+            app.$repositories.project.news.getNews(params.slug, params.id.split('-')[0])
         ]);
         return { project, id: news.id, title: news.title, content: news.content }
     },
@@ -54,7 +54,7 @@ export default {
                 return false;
             }
             try {
-                await this.$repositories.project.updateNews(this.project, this.id, this.title, this.content);
+                await this.$repositories.project.news.updateNews(this.project, this.id, this.title, this.content);
 
                 this.$store.dispatch('notifications/add', {
                     type: 'success',

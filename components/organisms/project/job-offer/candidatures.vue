@@ -39,11 +39,11 @@ export default {
 
     methods: {
         async accept() {
-            await this.$repositories.project.acceptCandidature(this.selectedCandidature);
+            await this.$repositories.project.candidature.acceptCandidature(this.selectedCandidature);
         },
 
         async decline() {
-            await this.$repositories.project.declineCandidature(this.selectedCandidature);
+            await this.$repositories.project.candidature.declineCandidature(this.selectedCandidature);
         }
     }
 }
