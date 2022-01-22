@@ -35,7 +35,7 @@
     "js-cookie": "^2.2.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "node-fetch": "^2.5.0",
+    "node-fetch": "^3.1.1",
     "nuxt": "^2.9.2",
     "vue-i18n": "^8.14.1",
     "vue-image-crop-upload": "^2.5.0",
